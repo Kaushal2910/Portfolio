@@ -1,4 +1,4 @@
-// Projects.tsx
+// Projects.tsx for adding pojects
 "use client";
 
 import { motion } from "framer-motion";
