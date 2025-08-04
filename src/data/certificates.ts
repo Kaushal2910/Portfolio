@@ -4,9 +4,9 @@ import { Certificate } from "@/components/Certifications";
 export const certificates: Certificate[] = [
   {
     id: "1",
-    title: "JLPT N5 Certificate",
-    imageUrl: "/certificates/n5.png",      // Put images in public/certificates/
-    downloadUrl: "/certificates/n5.pdf",   // Put PDFs in public/certificates/
+    title: "CSS Certificate",
+    imageUrl: "/certificates/css certificate.pdf",      // Put images in public/certificates/
+    downloadUrl: "/certificates/css certificate.pdf",   // Put PDFs in public/certificates/
   },
   {
     id: "2",
