@@ -103,7 +103,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg"
         >
-          I'm Kaushal Sonawane, a final-year Computer Engineering student with
+          I am Kaushal Sonawane, a final-year Computer Engineering student with
           hands-on experience building 8+ responsive websites for UK and US
           clients. I specialize in boosting SEO and user experience, with skills
           in HTML, CSS, Java, Python, WordPress, Wix Studio, and cloud platforms

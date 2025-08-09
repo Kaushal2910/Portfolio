@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { forwardRef, useState } from "react";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { Variants, easeInOut } from "framer-motion";
 
 export type Project = {
   title: string;
@@ -49,14 +50,19 @@ const projects: Project[] = [
 
 const allTechs = Array.from(new Set(projects.flatMap((p) => p.tech)));
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 60 },
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" },
+    transition: {
+      delay: i * 0.2,
+      duration: 0.5,
+      ease: easeInOut, 
+    },
   }),
 };
+
 
 const Projects = forwardRef<HTMLElement>(function Projects(_, ref) {
   const [selectedTech, setSelectedTech] = useState<string | null>(null);

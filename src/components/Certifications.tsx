@@ -4,6 +4,7 @@
 import { motion } from "framer-motion";
 import { forwardRef } from "react";
 import { FiDownload } from "react-icons/fi";
+import { Variants } from "framer-motion";
 
 export type Certificate = {
   id: string;
@@ -16,12 +17,12 @@ type CertificationsProps = {
   certificates: Certificate[];
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
+const cardVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.9 },
   visible: (i: number) => ({
     opacity: 1,
     scale: 1,
-    transition: { delay: i * 0.12, duration: 0.5, ease: "easeOut" },
+    transition: { delay: i * 0.1, duration: 0.3, ease: "easeInOut" as const },
   }),
 };
 
