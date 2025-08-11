@@ -24,11 +24,11 @@ const CertificateCard: React.FC<CertificateCardProps> = ({
         />
       </div>
       <div className="p-4 flex flex-col items-center">
-        <h3 className="text-lg font-semibold text-center">{title}</h3>
+        <h3 className="text-lg font-medium text-[#10b3f3] text-center">{title}</h3>
         <a
           href={downloadUrl}
           download
-          className="mt-3 inline-block px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg shadow-md hover:shadow-[0px_0px_15px_rgba(0,150,255,0.5)] hover:bg-blue-500 transition-all duration-300"
+          className="mt-3 inline-block px-4 py-2 text-sm font-small text-white bg-blue-600 rounded-lg shadow-md hover:shadow-[0px_0px_15px_rgba(0,150,255,0.5)] hover:bg-blue-500 transition-all duration-300"
         >
           Download PDF
         </a>

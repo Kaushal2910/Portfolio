@@ -198,14 +198,10 @@ export default function CertificateOrbit() {
                   boxShadow: isActive
                     ? "0 18px 45px rgba(59,130,246,0.28), inset 0 1px 0 rgba(255,255,255,0.02)"
                     : "0 10px 25px rgba(0,0,0,0.35)",
-                  borderRadius: 16,
-                  width: 280,
-                  background:
-                    "linear-gradient(180deg, rgba(12,16,26,0.85), rgba(6,8,12,0.9))",
-                  overflow: "hidden",
+
                 }}
               >
-                <CertificateCard {...c} />
+                <CertificateCard {...c}  />
               </div>
             </div>
           );
