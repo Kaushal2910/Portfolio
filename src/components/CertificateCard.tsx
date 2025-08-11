@@ -1,41 +1,40 @@
-// CertificateCard.tsx
-"use client";
+// src/components/CertificateCard.tsx
+import React from "react";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-
-interface CertificateCardProps {
+export interface CertificateCardProps {
+  id: string;
   title: string;
-  image: string; // path in /public
-  downloadUrl: string; // direct PDF or image link
+  imageUrl: string;
+  downloadUrl: string; // should point to the PDF version
 }
 
-export default function CertificateCard({ title, image, downloadUrl }: CertificateCardProps) {
+const CertificateCard: React.FC<CertificateCardProps> = ({
+  title,
+  imageUrl,
+  downloadUrl,
+}) => {
   return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.3 }}
-      className="rounded-lg bg-slate-800 shadow-lg overflow-hidden border border-slate-700"
-    >
-      <div className="relative w-full h-56">
-        <Image
-          src={image}
+    <div className="bg-[#111729] rounded-xl shadow-lg overflow-hidden w-[280px] transition-transform duration-300 hover:scale-[1.02]">
+      <div className="relative w-full h-40 overflow-hidden">
+        <img
+          src={imageUrl}
           alt={title}
-          fill
-          className="object-cover"
+          className="object-cover w-full h-full"
+          loading="lazy"
         />
       </div>
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-slate-100">{title}</h3>
+      <div className="p-4 flex flex-col items-center">
+        <h3 className="text-lg font-semibold text-center">{title}</h3>
         <a
           href={downloadUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-2 inline-block text-sky-400 hover:underline"
+          download
+          className="mt-3 inline-block px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg shadow-md hover:shadow-[0px_0px_15px_rgba(0,150,255,0.5)] hover:bg-blue-500 transition-all duration-300"
         >
-          View / Download
+          Download PDF
         </a>
       </div>
-    </motion.div>
+    </div>
   );
-}
+};
+
+export default CertificateCard;
