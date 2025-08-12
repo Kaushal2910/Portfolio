@@ -2,20 +2,20 @@ export const certificates: Certificate[] = [
   {
     id: "1",
     title: "AWS Summit – Certificate of Attendance",
-    imageUrl: "/certificates/aws_summit_attendance.jpeg",
-    downloadUrl: "/certificates/aws_summit_attendance.pdf",
+    imageUrl: "/certificates/aws_summit_certificate.jpeg",
+    downloadUrl: "/certificates/aws_summit_certificate.pdf", // no PDF present
   },
   {
     id: "2",
     title: "CSS Certification – HackerRank",
-    imageUrl: "/certificates/css_cert_hackerrank.jpg",
-    downloadUrl: "/certificates/css_cert_hackerrank.pdf",
+    imageUrl: "/certificates/css_hackerrank.jpg",
+    downloadUrl: "/certificates/css_hackerrank.pdf",
   },
   {
     id: "3",
     title: "C# Basics Certification – HackerRank",
-    imageUrl: "/certificates/csharp_basic_cert_hackerrank.jpg",
-    downloadUrl: "/certificates/csharp_basic_cert_hackerrank.pdf",
+    imageUrl: "/certificates/csharp_basic_hackerrank.jpg",
+    downloadUrl: "/certificates/csharp_basic_hackerrank.pdf",
   },
   {
     id: "4",
@@ -32,8 +32,8 @@ export const certificates: Certificate[] = [
   {
     id: "6",
     title: "Employability Skills Program – RPG Foundation & Zensar",
-    imageUrl: "/certificates/employability_skills_rpg_zensar.jpeg",
-    downloadUrl: "/certificates/employability_skills_rpg_zensar.pdf",
+    imageUrl: "/certificates/employability_skill_rpg_zensar.jpeg",
+    downloadUrl: "/certificates/employability_skill_rpg_zensar.pdf", // no PDF present
   },
   {
     id: "7",
@@ -44,14 +44,14 @@ export const certificates: Certificate[] = [
   {
     id: "8",
     title: "ServiceNow Micro-Certification",
-    imageUrl: "/certificates/servicenow_micro_cert.jpeg",
-    downloadUrl: "/certificates/servicenow_micro_cert.pdf",
+    imageUrl: "/certificates/servicenow_micro.jpeg",
+    downloadUrl: "/certificates/servicenow_micro.pdf", // no PDF present
   },
   {
     id: "9",
     title: "Software Development Workshop – Crio.do",
-    imageUrl: "/certificates/software_dev_crio.jpg",
-    downloadUrl: "/certificates/software_dev_crio.pdf",
+    imageUrl: "/certificates/software_dev_workshop_crio.jpg",
+    downloadUrl: "/certificates/software_dev_workshop_crio.pdf",
   },
   {
     id: "10",

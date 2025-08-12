@@ -1,40 +1,42 @@
-// src/components/CertificateCard.tsx
-import React from "react";
+//src/components/CertificateCard.tsx
 
-export interface CertificateCardProps {
-  id: string;
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+interface CertificateCardProps {
   title: string;
-  imageUrl: string;
-  downloadUrl: string; // should point to the PDF version
+  image: string; // path in /public
+  downloadUrl: string; // direct PDF or image link
 }
 
-const CertificateCard: React.FC<CertificateCardProps> = ({
-  title,
-  imageUrl,
-  downloadUrl,
-}) => {
+export default function CertificateCard({ title, image, downloadUrl }: CertificateCardProps) {
   return (
-    <div className="bg-[#111729] rounded-xl shadow-lg overflow-hidden w-[280px] transition-transform duration-300 hover:scale-[1.02]">
-      <div className="relative w-full h-40 overflow-hidden">
-        <img
-          src={imageUrl}
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.3 }}
+      className="rounded-lg bg-slate-800 shadow-lg overflow-hidden border border-slate-700"
+    >
+      <div className="relative w-full h-56">
+        <Image
+          src={image}
           alt={title}
-          className="object-cover w-full h-full"
-          loading="lazy"
+          fill
+          className="object-cover"
         />
       </div>
-      <div className="p-4 flex flex-col items-center">
-        <h3 className="text-lg font-medium text-[#10b3f3] text-center">{title}</h3>
+      <div className="p-4">
+        <h3 className="text-lg font-semibold text-slate-100">{title}</h3>
         <a
           href={downloadUrl}
-          download
-          className="mt-3 inline-block px-4 py-2 text-sm font-small text-white bg-blue-600 rounded-lg shadow-md hover:shadow-[0px_0px_15px_rgba(0,150,255,0.5)] hover:bg-blue-500 transition-all duration-300"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 inline-block text-sky-400 hover:underline"
         >
-          Download PDF
+          View / Download
         </a>
       </div>
-    </div>
+    </motion.div>
   );
-};
-
-export default CertificateCard;
+}

@@ -15,7 +15,7 @@ export default function Home() {
       <Hero />
       <About />
       <Projects />
-      <Certifications certificates={certificates} /> {/* ✅ pass as prop */}
+      <Certifications certificates={certificates} limit={3} /> {/* ✅ pass as prop */}
       <GitHubGraph />
       <Footer />
     </main>
