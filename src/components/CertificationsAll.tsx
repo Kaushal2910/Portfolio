@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import { forwardRef } from "react";
 import { FiDownload } from "react-icons/fi";
 import { Variants } from "framer-motion";
-import type { Certificate } from "../data/certificates";
+import { certificates } from "../data/certificates";
+type Certificate = (typeof certificates)[number];
+
 
 type CertificationsProps = {
   certificates: Certificate[];
