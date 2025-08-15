@@ -65,11 +65,11 @@ const AboutMe = forwardRef<HTMLElement>(function AboutMe(_, ref) {
           <div className="grid grid-cols-2 gap-4 text-center sm:grid-cols-3 md:grid-cols-4">
             {[
               "Next.js",
-              "TypeScript",
-              "Tailwind CSS",
+              "JavaScript",
+              "Wix",
               "Node.js",
               "AWS",
-              "CI/CD",
+              "Wordpress",
               "Figma",
               "Agile",
             ].map((skill) => (

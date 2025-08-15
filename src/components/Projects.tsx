@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 import { Variants, easeInOut } from "framer-motion";
 
@@ -14,41 +14,48 @@ export type Project = {
   image?: string;
 };
 
+// ✅ Updated with your actual projects
 const projects: Project[] = [
   {
-    title: "E-commerce Dashboard",
-    description: "Full-stack admin panel with real-time analytics, inventory & order management.",
-    tech: ["Next.js", "TypeScript", "Tailwind", "Prisma", "PostgreSQL"],
-    githubUrl: "https://github.com/kaushal/shop-admin",
-    demoUrl: "https://shop-admin-demo.vercel.app",
-    image: "/images/shop-admin.png",
+    title: "TourHouse Website",
+    description: "A travel and tour booking website with modern UI and responsive design.",
+    tech: ["JavaScript", "HTML", "CSS", "NextJS"],
+    githubUrl: "https://github.com/Kaushal2910/TourHouse-Website",
+    demoUrl: "https://classy-tartufo-04ac54.netlify.app/",
+    image: "/images/tourhouse.png",
   },
   {
-    title: "WeatherLens",
-    description: "PWA delivering hyper-local forecasts with interactive maps.",
-    tech: ["React", "Vite", "OpenWeather API", "PWA", "Chart.js"],
-    githubUrl: "https://github.com/kaushal/weather-lens",
-    demoUrl: "https://weatherlens.netlify.app",
-    image: "/images/weatherlens.png",
+    title: "Sanz cafe",
+    description: "Paid client project – Full responsive website for a local cafe.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    githubUrl: "https://github.com/Kaushal2910/sanz-cafe",
+    demoUrl: "https://sanzcafe.netlify.app/",
+    image: "/images/sanz-cafe.png",
   },
   {
-    title: "Portfolio CMS",
-    description: "Headless CMS powering this portfolio; content updates via Sanity Studio.",
-    tech: ["Next.js", "Sanity", "Tailwind", "Framer Motion"],
-    githubUrl: "https://github.com/kaushal/portfolio-cms",
-    image: "/images/portfolio-cms.png",
+    title: "Portfolio",
+    description: "My personal portfolio website built with Next.js and Tailwind CSS.",
+    tech: ["Next.js", "TypeScript", "Tailwind"],
+    githubUrl: "https://github.com/Kaushal2910/Portfolio",
+    demoUrl: "https://1mynewportfolio.netlify.app/",
+    image: "/images/portfolio.png",
   },
   {
-    title: "TaskFlow",
-    description: "Kanban-style task manager with drag-and-drop & team invites.",
-    tech: ["React", "Firebase", "React DnD", "Zustand"],
-    githubUrl: "https://github.com/kaushal/taskflow",
-    demoUrl: "https://taskflow-ks.vercel.app",
-    image: "/images/taskflow.png",
+    title: "Trendzz",
+    description: "A web project showcasing trending styles and products.",
+    tech: ["JavaScript", "HTML", "CSS"],
+    githubUrl: "https://github.com/Kaushal2910/Trendzz",
+    image: "/images/trendzz.png",
+  },
+
+  {
+    title: "Crio-do",
+    description: "JavaScript & DSA practice codes from the Crio.do Fellowship program.",
+    tech: ["JavaScript"],
+    githubUrl: "https://github.com/Kaushal2910/Crio-do",
+    image: "/images/crio-do.png",
   },
 ];
-
-const allTechs = Array.from(new Set(projects.flatMap((p) => p.tech)));
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -58,51 +65,27 @@ const cardVariants: Variants = {
     transition: {
       delay: i * 0.2,
       duration: 0.5,
-      ease: easeInOut, 
+      ease: easeInOut,
     },
   }),
 };
 
-
 const Projects = forwardRef<HTMLElement>(function Projects(_, ref) {
-  const [selectedTech, setSelectedTech] = useState<string | null>(null);
-
-  const filteredProjects = selectedTech
-    ? projects.filter((p) => p.tech.includes(selectedTech))
-    : projects;
-
   return (
     <section
       ref={ref}
       id="projects"
-      className="min-h-screen bg-slate-950 px-6 py-24 text-slate-100 md:px-12"
+      className="min-h-screen bg-slate-950 px-6 py-20 text-slate-100 md:px-12" // reduced padding from py-24 to py-20
     >
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="text-center text-4xl font-extrabold sm:text-5xl"
+        className="text-center text-4xl font-extrabold sm:text-5xl mb-12" // added mb-12 to space below title
       >
         Featured Projects
       </motion.h2>
-
-      {/* Filter buttons */}
-      <div className="mt-10 mb-16 flex flex-wrap justify-center gap-3">
-        {allTechs.map((tech) => (
-          <button
-            key={tech}
-            onClick={() => setSelectedTech(tech === selectedTech ? null : tech)}
-            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
-              selectedTech === tech
-                ? "bg-sky-500 text-white"
-                : "bg-slate-800 text-slate-300 hover:bg-slate-700"
-            }`}
-          >
-            {tech}
-          </button>
-        ))}
-      </div>
 
       {/* Projects Grid */}
       <motion.div
@@ -111,7 +94,7 @@ const Projects = forwardRef<HTMLElement>(function Projects(_, ref) {
         viewport={{ once: true, amount: 0.2 }}
         className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {filteredProjects.map((p, i) => (
+        {projects.map((p, i) => (
           <motion.div
             key={p.title}
             custom={i}

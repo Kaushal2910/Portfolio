@@ -36,6 +36,18 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, [currentTitle, isDeleting, typingSpeed, titleIndex]);
 
+  const handleDownload = () => {
+    // Delay so tab opens first
+    setTimeout(() => {
+      const link = document.createElement("a");
+      link.href = "/resume.pdf";
+      link.download = "Kaushal_Sonawane_Resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }, 500);
+  };
+
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-slate-950 px-6 py-24 text-slate-100 md:px-12">
       {/* Animated Background */}
@@ -96,19 +108,19 @@ export default function Hero() {
           <span className="ml-1 inline-block h-full w-1 animate-pulse bg-sky-400" />
         </motion.h2>
 
-        {/* Bio */}
+        {/* New Bio */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg"
         >
-          I am Kaushal Sonawane, a final-year Computer Engineering student with
-          hands-on experience building 8+ responsive websites for UK and US
-          clients. I specialize in boosting SEO and user experience, with skills
-          in HTML, CSS, Java, Python, WordPress, Wix Studio, and cloud platforms
-          like AWS and Azure. I thrive in international Agile teams, creating
-          high-performance, accessible web apps.
+          I’m Kaushal Sonawane, a passionate software engineer and final-year
+          Computer Engineering student. I’ve built multiple responsive and
+          high-performance web applications for global clients, blending
+          technical precision with design aesthetics. My skills span modern
+          frameworks, cloud platforms, and Agile teamwork, with a focus on
+          delivering impactful digital experiences.
         </motion.p>
 
         {/* CTA Button */}
@@ -122,6 +134,7 @@ export default function Hero() {
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleDownload}
             className="group relative inline-flex items-center gap-2 rounded-full bg-sky-500 px-6 py-3 text-lg font-semibold text-white shadow-lg shadow-sky-500/30 transition-all hover:bg-sky-600 hover:shadow-xl hover:shadow-sky-600/40 sm:px-8"
           >
             <span className="transition-transform group-hover:translate-x-1">
