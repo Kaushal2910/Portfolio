@@ -6,7 +6,6 @@ import { FiDownload } from "react-icons/fi";
 import { Variants } from "framer-motion";
 
 export type Certificate = {
-  id: string;
   title: string;
   imageUrl: string;
   downloadUrl: string;
@@ -56,7 +55,7 @@ const Certifications = forwardRef<HTMLElement, CertificationsProps>(
         >
           {displayCertificates.map((cert, i) => (
             <motion.div
-              key={cert.id}
+              key={i}
               custom={i}
               variants={cardVariants}
               whileHover={{ y: -8 }}

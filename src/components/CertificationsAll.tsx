@@ -46,7 +46,7 @@ const CertificationsAll = forwardRef<HTMLElement, CertificationsProps>(
         >
           {certificates.map((cert, i) => (
             <motion.div
-              key={cert.id}
+              key={i}
               custom={i}
               variants={cardVariants}
               whileHover={{ y: -8 }}

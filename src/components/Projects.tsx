@@ -22,7 +22,7 @@ const projects: Project[] = [
     tech: ["JavaScript", "HTML", "CSS", "NextJS"],
     githubUrl: "https://github.com/Kaushal2910/TourHouse-Website",
     demoUrl: "https://classy-tartufo-04ac54.netlify.app/",
-    image: "/images/tourhouse.png",
+    image: "/projectsImages/Tourhouse.png",
   },
   {
     title: "Sanz cafe",
@@ -30,7 +30,7 @@ const projects: Project[] = [
     tech: ["HTML", "CSS", "JavaScript"],
     githubUrl: "https://github.com/Kaushal2910/sanz-cafe",
     demoUrl: "https://sanzcafe.netlify.app/",
-    image: "/images/sanz-cafe.png",
+    image: "/projectsImages/sanz.png",
   },
   {
     title: "Portfolio",
@@ -38,14 +38,14 @@ const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind"],
     githubUrl: "https://github.com/Kaushal2910/Portfolio",
     demoUrl: "https://1mynewportfolio.netlify.app/",
-    image: "/images/portfolio.png",
+    image: "/projectsImages/portfolio.png",
   },
   {
     title: "Trendzz",
     description: "A web project showcasing trending styles and products.",
     tech: ["JavaScript", "HTML", "CSS"],
     githubUrl: "https://github.com/Kaushal2910/Trendzz",
-    image: "/images/trendzz.png",
+    image: "/projectsImages/Trendzz.png",
   },
 
   {
@@ -53,7 +53,7 @@ const projects: Project[] = [
     description: "JavaScript & DSA practice codes from the Crio.do Fellowship program.",
     tech: ["JavaScript"],
     githubUrl: "https://github.com/Kaushal2910/Crio-do",
-    image: "/images/crio-do.png",
+    image: "/projectsImages/crio_do.jpeg",
   },
 ];
 
