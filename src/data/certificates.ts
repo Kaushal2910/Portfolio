@@ -14,6 +14,11 @@ export const certificates: Omit<Certificate, 'id'>[] = [
     downloadUrl: "/certificates/software_engineer_intern certificate.pdf"
   },
   {
+    title: "Japanese N5 Cleared - JLPT",
+    imageUrl: "/certificates/JLPT_N5.jpg",
+    downloadUrl: "/certificates/JLPT_N5.pdf"
+  },
+  {
     title: "AI Foundation Associate - Oracle",
     imageUrl: "/certificates/Oracle_AI_Foundation_Associate.jpg",
     downloadUrl: "/certificates/Oracle_AI_Foundation_Associate.pdf"
