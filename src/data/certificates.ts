@@ -14,6 +14,11 @@ export const certificates: Omit<Certificate, 'id'>[] = [
     downloadUrl: "/certificates/software_engineer_intern certificate.pdf"
   },
   {
+    title: "Certified Agentforce Specialist - Salesforce",
+    imageUrl: "/certificates/Salesforce_Certified_Agentforce_Specialist.jpg",
+    downloadUrl: "/certificates/Salesforce_Certified_Agentforce_Specialist.pdf"
+  },
+  {
     title: "Japanese N5 Cleared - JLPT",
     imageUrl: "/certificates/JLPT_N5.jpg",
     downloadUrl: "/certificates/JLPT_N5.pdf"
@@ -26,8 +31,8 @@ export const certificates: Omit<Certificate, 'id'>[] = [
 
   {
     title: "Oracle Cloud Infrastructure Foundations Associate",
-    imageUrl: "/certificates/Oracle_Cloud_Infrastructure_Foundations_Associate.jpg",
-    downloadUrl: "/certificates/Oracle_Cloud_Infrastructure_Foundations_Associate.pdf"
+    imageUrl: "/certificates/Oracle_Certified_foundational_Certificate.jpg",
+    downloadUrl: "/certificates/Oracle_Certified_foundational_Certificate.pdf"
   },
   {
     title: "Certificate of Experience – YWS",
@@ -35,7 +40,7 @@ export const certificates: Omit<Certificate, 'id'>[] = [
     downloadUrl: "/certificates/YWSintership.pdf"
   },
   {
-    title: "Oracle Data Platform Foundations Associate",
+    title: "Data Platform Foundations Associate - Oracle",
     imageUrl: "/certificates/Oracle_Data_Platform_Foundations_Associate.jpg",
     downloadUrl: "/certificates/Oracle_Data_Platform_Foundations_Associate.pdf"
   },
