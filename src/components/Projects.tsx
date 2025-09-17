@@ -21,7 +21,7 @@ const projects: Project[] = [
     description: "A travel and tour booking website with modern UI and responsive design.",
     tech: ["JavaScript", "HTML", "CSS", "NextJS"],
     githubUrl: "https://github.com/Kaushal2910/TourHouse-Website",
-    demoUrl: "https://classy-tartufo-04ac54.netlify.app/",
+    demoUrl: "https://tour-house-website.vercel.app/",
     image: "/projectsImages/Tourhouse.png",
   },
   {
