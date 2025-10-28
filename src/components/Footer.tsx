@@ -21,7 +21,7 @@ const Contact = forwardRef<HTMLElement>(function Contact(_, ref) {
 
   const iconLinks = [
     { Icon: FiGithub, href: "https://github.com/Kaushal2910", label: "GitHub" },
-    { Icon: FiLinkedin, href: "https://linkedin.com/in/kaushal-sonawane", label: "LinkedIn" },
+    { Icon: FiLinkedin, href: "https://www.linkedin.com/in/kaushal0510/", label: "LinkedIn" },
     { Icon: FiMail, href: "mailto:kaushal.sonawane@example.com", label: "Email" },
   ];
 

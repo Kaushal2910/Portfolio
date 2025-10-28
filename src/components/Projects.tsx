@@ -14,7 +14,6 @@ export type Project = {
   image?: string;
 };
 
-// ✅ Updated with your actual projects
 const projects: Project[] = [
   {
     title: "TourHouse Website",
