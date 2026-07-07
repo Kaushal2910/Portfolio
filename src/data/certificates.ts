@@ -28,6 +28,21 @@ export const certificates: Omit<Certificate, 'id'>[] = [
 
   // 💼 Technical & Cloud Certifications
   {
+    title: "Oracle Certified Foundations Associate – Agentic AI",
+    imageUrl: "/certificates/Oracle_Certified_Foundations_Associate_Agentic_AI.jpg",
+    downloadUrl: "/certificates/Oracle_Certified_Foundations_Associate_Agentic_AI.pdf"
+  },
+  {
+    title: "Copado Certified AI",
+    imageUrl: "/certificates/Copado_Certified_AI.jpg",
+    downloadUrl: "/certificates/Copado_Certified_AI.jpg"
+  },
+  {
+    title: "Diploma in MySQL and Statistics for Data Analysis",
+    imageUrl: "/certificates/Alison_Diploma_MySQL_Statistics_Data_Analysis.jpg",
+    downloadUrl: "/certificates/Alison_Diploma_MySQL_Statistics_Data_Analysis.pdf"
+  },
+  {
     title: "Oracle Certified DevOps Professional",
     imageUrl: "/certificates/Oracle_DevOps_Professional.jpg",
     downloadUrl: "/certificates/Oracle_DevOps_Professional.pdf"

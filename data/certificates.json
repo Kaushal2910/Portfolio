@@ -1,5 +1,23 @@
 [
   {
+    "title": "Oracle Certified Foundations Associate – Agentic AI",
+    "fileName": "Oracle_Certified_Foundations_Associate_Agentic_AI.pdf",
+    "type": "pdf",
+    "description": "Oracle University certification validating foundational knowledge of Agentic AI, AI Agents, LLMs, Prompt Engineering, and Generative AI concepts."
+  },
+  {
+    "title": "Copado Certified AI",
+    "fileName": "Copado_Certified_AI.jpg",
+    "type": "image",
+    "description": "Certification demonstrating understanding and application of AI capabilities within the Copado DevOps platform."
+  },
+  {
+    "title": "Diploma in MySQL and Statistics for Data Analysis",
+    "fileName": "Alison_Diploma_MySQL_Statistics_Data_Analysis.pdf",
+    "type": "pdf",
+    "description": "Completed the Diploma in MySQL and Statistics for Data Analysis from Alison."
+  },
+  {
     "title": "AWS Summit – Certificate of Attendance",
     "fileName": "AWS Summit certificate of attendence.jpeg",
     "type": "image",

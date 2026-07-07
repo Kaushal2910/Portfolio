@@ -4,19 +4,21 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#github", label: "GitHub" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#home", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#certifications", label: "Certifications" },
+  { href: "/#github", label: "GitHub" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,8 +29,15 @@ export default function Navbar() {
   }, []);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const hash = href.startsWith("/") ? href.slice(1) : href; // e.g. "/#about" -> "#about"
+
+    if (pathname !== "/") {
+      setIsOpen(false);
+      return; // Let the native link navigation to the homepage handle it
+    }
+
     e.preventDefault();
-    const target = document.querySelector(href);
+    const target = document.querySelector(hash);
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     }
@@ -47,8 +56,8 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo / Initials */}
         <Link
-          href="#home"
-          onClick={(e) => handleLinkClick(e, "#home")}
+          href="/#home"
+          onClick={(e) => handleLinkClick(e, "/#home")}
           className="text-2xl font-bold tracking-tighter text-white transition-all hover:text-sky-400"
         >
           KS

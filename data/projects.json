@@ -1,1 +1,46 @@
-[] 
+[
+  {
+    "title": "RelationshipOS",
+    "description": "Mobile App: A centralized mobile operating system for managing personal relationships, communication logs, reminders, and life events.",
+    "tech": ["React Native", "TypeScript", "Expo", "SQLite"],
+    "githubUrl": "https://github.com/Kaushal2910/RelationshipOS",
+    "image": "/projectsImages/relationshipOS.png"
+  },
+  {
+    "title": "MediTrack",
+    "description": "Mobile App: A decentralized Personal Health Record (PHR) mobile system leveraging blockchain for secure medical record tracking and data privacy.",
+    "tech": ["React Native", "Blockchain", "Node.js", "Cryptography"],
+    "githubUrl": "https://github.com/Kaushal2910/MediTrack",
+    "image": "/projectsImages/meditrack.png"
+  },
+  {
+    "title": "LoopHire",
+    "description": "An automated career pipeline assistant that scrapes developer job postings, scores profile matches, and dynamically generates ATS-optimized CVs and cover letters.",
+    "tech": ["Python", "AI", "BeautifulSoup", "docx"],
+    "githubUrl": "https://github.com/Kaushal2910/LoopHire",
+    "image": "/projectsImages/LoopHire.png"
+  },
+  {
+    "title": "NeuroBiz",
+    "description": "AI-powered business platform featuring analytics, automation, and intelligent insights designed to streamline enterprise workflows.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Node.js"],
+    "githubUrl": "https://github.com/Kaushal2910/NeuroBiz",
+    "image": "/projectsImages/neurobiz.png"
+  },
+  {
+    "title": "Sanz Café",
+    "description": "Paid client freelance project – A fully responsive website for a local café featuring custom menus and optimized layouts.",
+    "tech": ["HTML", "CSS", "JavaScript"],
+    "githubUrl": "https://github.com/Kaushal2910/sanz-cafe",
+    "demoUrl": "https://sanzcafe.netlify.app/",
+    "image": "/projectsImages/sanzcafe.png"
+  },
+  {
+    "title": "TourHouse Website",
+    "description": "A sleek travel-booking website offering custom packages, stays, and tour itineraries with a strong focus on high-end UI/UX polish.",
+    "tech": ["Next.js", "Tailwind CSS", "React.js", "JavaScript"],
+    "githubUrl": "https://github.com/Kaushal2910/TourHouse-Website",
+    "demoUrl": "https://tour-house-website.vercel.app/",
+    "image": "/projectsImages/Tourhouse.png"
+  }
+]

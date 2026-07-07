@@ -49,7 +49,8 @@ const Certifications = forwardRef<HTMLElement, CertificationsProps>(
 
         <motion.div
           initial="hidden"
-          whileInView="visible"
+          animate={limit ? undefined : "visible"}
+          whileInView={limit ? "visible" : undefined}
           viewport={{ once: true, amount: 0.2 }}
           className="mx-auto mt-16 grid max-w-7xl gap-8 sm:grid-cols-2 lg:grid-cols-3"
         >
