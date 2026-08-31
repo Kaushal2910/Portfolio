@@ -1,104 +1,187 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { forwardRef } from "react";
-import { FiDownload } from "react-icons/fi";
-import { Variants } from "framer-motion";
+import { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiArrowUpRight, FiGrid, FiX } from 'react-icons/fi';
+import CertificateCard from './CertificateCard';
+import { certificates, certificateCategories } from '@/data/certificates';
+import type { CertificateCategory } from '@/types';
 
-export type Certificate = {
-  title: string;
-  imageUrl: string;
-  downloadUrl: string;
-};
+const TOP_COUNT = 3;
 
-type CertificationsProps = {
-  certificates: Certificate[];
-  limit?: number; // ✅ optional prop
-};
+interface Props {
+  mode?: 'preview' | 'full';
+}
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    transition: { delay: i * 0.1, duration: 0.3, ease: "easeInOut" },
-  }),
-};
+export default function Certifications({ mode = 'preview' }: Props) {
+  const [activeCategory, setActiveCategory] = useState<CertificateCategory | 'All'>('All');
+  const [showAllPreview, setShowAllPreview] = useState(false);
 
-const Certifications = forwardRef<HTMLElement, CertificationsProps>(
-  function Certifications({ certificates, limit }, ref) {
-    const displayCertificates = limit
-      ? certificates.slice(0, limit) // ✅ limit only when prop is passed
-      : certificates;
+  const filtered = useMemo(() => {
+    if (activeCategory === 'All') return certificates;
+    return certificates.filter((c) => c.category === activeCategory);
+  }, [activeCategory]);
 
-    return (
-      <section
-        ref={ref}
-        id="certifications"
-        className="min-h-screen bg-slate-950 px-6 py-24 text-slate-100 md:px-12"
-      >
-        <motion.h2
-          initial={{ opacity: 0, y: -30 }}
+  // Counts per category for the filter chips
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { All: certificates.length };
+    certificates.forEach((c) => {
+      counts[c.category] = (counts[c.category] || 0) + 1;
+    });
+    return counts;
+  }, []);
+
+  // Determine what to show in the grid
+  const visibleCerts = useMemo(() => {
+    if (mode === 'full') return filtered;
+    // preview mode (homepage): always cap at TOP_COUNT (3), regardless of category
+    return filtered.slice(0, TOP_COUNT);
+  }, [mode, filtered]);
+
+  const showViewAllLink = mode === 'preview';
+
+  return (
+    <section id="certifications" className="py-24 px-4 bg-[#0a0f1e] relative">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
+          transition={{ duration: 0.6 }}
         >
-          Certifications
-        </motion.h2>
-
-        <motion.div
-          initial="hidden"
-          animate={limit ? undefined : "visible"}
-          whileInView={limit ? "visible" : undefined}
-          viewport={{ once: true, amount: 0.2 }}
-          className="mx-auto mt-16 grid max-w-7xl gap-8 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {displayCertificates.map((cert, i) => (
-            <motion.div
-              key={i}
-              custom={i}
-              variants={cardVariants}
-              whileHover={{ y: -8 }}
-              className="group relative rounded-xl bg-slate-900/70 p-4 shadow-lg ring-1 ring-slate-800 transition-shadow hover:shadow-sky-500/20 hover:ring-sky-500/60"
-            >
-              <div className="aspect-[16/10] overflow-hidden rounded-md bg-slate-800">
-                <img
-                  src={cert.imageUrl}
-                  alt={cert.title}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-
-              <h3 className="mt-4 text-center text-lg font-semibold text-sky-400">
-                {cert.title}
-              </h3>
-
-              <a
-                href={cert.downloadUrl}
-                download
-                className="mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-sky-500/10 py-2.5 text-sm font-medium text-sky-400 ring-1 ring-inset ring-sky-500/20 transition-all hover:bg-sky-500/20 hover:text-sky-300"
-              >
-                <FiDownload size={16} />
-                Download
-              </a>
-            </motion.div>
-          ))}
+          <p className="text-blue-400 font-mono text-sm mb-2">
+            {mode === 'full' ? 'All Credentials' : '03.'}
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            {mode === 'full' ? 'Certifications & Credentials' : 'Certifications'}
+          </h2>
+          <p className="text-gray-500 mt-3 font-mono text-sm">
+            {certificates.length} certifications · {Object.keys(categoryCounts).length - 1} categories
+          </p>
         </motion.div>
-        {limit && certificates.length > limit && (
-  <div className="mt-8 flex justify-center">
-    <a
-      href="/certificates"
-      className="rounded-md bg-sky-500/10 px-6 py-2.5 text-sm font-medium text-sky-400 ring-1 ring-sky-500/20 transition hover:bg-sky-500/20 hover:text-sky-300"
-    >
-      View More
-    </a>
-  </div>
-)}
 
-      </section>
-    );
-  }
-);
+        {/* Category Filter */}
+        <motion.div
+          className="flex justify-center gap-2 mb-10 flex-wrap"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {certificateCategories.map((cat) => {
+            const isActive = activeCategory === cat.id;
+            const count = categoryCounts[cat.id] || 0;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  setActiveCategory(cat.id);
+                  setShowAllPreview(false);
+                }}
+                className={`group inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-mono transition-all duration-300 border ${
+                  isActive
+                    ? 'bg-blue-500/15 text-blue-400 border-blue-500/40 shadow-[0_0_20px_-5px_rgba(96,165,250,0.3)]'
+                    : 'bg-white/[0.02] text-gray-400 border-white/5 hover:border-white/15 hover:text-white'
+                }`}
+              >
+                {cat.label}
+                <span
+                  className={`text-xs px-1.5 py-0.5 rounded-full transition-colors ${
+                    isActive ? 'bg-blue-500/20 text-blue-300' : 'bg-white/5 text-gray-500'
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </motion.div>
 
-export default Certifications;
+        {/* Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory + (showAllPreview ? '-all' : '-top')}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.35 }}
+          >
+            {visibleCerts.length > 0 ? (
+              visibleCerts.map((cert, i) => (
+                <CertificateCard key={cert.id} cert={cert} index={i} />
+              ))
+            ) : (
+              <div className="col-span-full text-center py-16 text-gray-500 font-mono text-sm">
+                No certifications in this category yet.
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Preview-mode: "View All" opens /certificates in a new tab */}
+        {showViewAllLink && (
+          <motion.div
+            className="flex justify-center mt-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <a
+              href="/certificates"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.02] border border-white/10 text-gray-300 hover:text-blue-400 hover:border-blue-500/40 hover:bg-blue-500/5 transition-all duration-300 font-mono text-sm"
+            >
+              <FiGrid size={16} />
+              View all {certificates.length} certificates
+              <FiArrowUpRight
+                size={16}
+                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </a>
+          </motion.div>
+        )}
+
+        {/* Preview-mode + filtered: show a small "clear filter" link */}
+        {mode === 'preview' && activeCategory !== 'All' && (
+          <motion.div
+            className="flex justify-center mt-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <button
+              onClick={() => setActiveCategory('All')}
+              className="inline-flex items-center gap-1.5 text-xs font-mono text-gray-500 hover:text-blue-400 transition-colors"
+            >
+              <FiX size={12} /> Clear filter
+            </button>
+          </motion.div>
+        )}
+
+        {/* Full-mode: subtle count + back to home */}
+        {mode === 'full' && (
+          <motion.div
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-14"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-gray-600 font-mono text-xs">
+              Showing {visibleCerts.length} of {certificates.length} credentials
+            </p>
+            <span className="hidden sm:inline text-gray-700">·</span>
+            <a
+              href="/#certifications"
+              className="text-xs font-mono text-gray-500 hover:text-blue-400 transition-colors"
+            >
+              ← Back to home
+            </a>
+          </motion.div>
+        )}
+      </div>
+    </section>
+  );
+}

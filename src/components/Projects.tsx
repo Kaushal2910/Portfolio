@@ -1,164 +1,74 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { forwardRef } from "react";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
-import { Variants, easeInOut } from "framer-motion";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import ProjectCard from './ProjectCard';
+import projectsData from '../../data/projects.json';
 
-export type Project = {
-  title: string;
-  description: string;
-  tech: string[];
-  githubUrl: string;
-  demoUrl?: string;
-  image?: string;
-};
+const filters = ['All', 'Featured', 'Web', 'Mobile', 'AI/ML'];
 
-const projects: Project[] = [
-  {
-    title: "RelationshipOS",
-    description: "Mobile App: A centralized mobile operating system for managing personal relationships, communication logs, reminders, and life events.",
-    tech: ["React Native", "TypeScript", "Expo", "SQLite"],
-    githubUrl: "https://github.com/Kaushal2910/RelationshipOS",
-    image: "/projectsImages/relationshipOS.png",
-  },
-  {
-    title: "MediTrack",
-    description: "Mobile App: A decentralized Personal Health Record (PHR) mobile system leveraging blockchain for secure medical record tracking and data privacy.",
-    tech: ["React Native", "Blockchain", "Node.js", "Cryptography"],
-    githubUrl: "https://github.com/Kaushal2910/MediTrack",
-    image: "/projectsImages/meditrack.png",
-  },
-  {
-    title: "LoopHire",
-    description: "An automated career pipeline assistant that scrapes developer job postings, scores profile matches, and dynamically generates ATS-optimized CVs and cover letters.",
-    tech: ["Python", "AI", "BeautifulSoup", "docx"],
-    githubUrl: "https://github.com/Kaushal2910/LoopHire",
-    image: "/projectsImages/LoopHire.png",
-  },
-  {
-    title: "NeuroBiz",
-    description: "AI-powered business platform featuring analytics, automation, and intelligent insights designed to streamline enterprise workflows.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js"],
-    githubUrl: "https://github.com/Kaushal2910/NeuroBiz",
-    image: "/projectsImages/neurobiz.png",
-  },
-  {
-    title: "Sanz Café",
-    description: "Paid client freelance project – A fully responsive website for a local café featuring custom menus and optimized layouts.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    githubUrl: "https://github.com/Kaushal2910/sanz-cafe",
-    demoUrl: "https://sanzcafe.netlify.app/",
-    image: "/projectsImages/sanzcafe.png",
-  },
-  {
-    title: "TourHouse Website",
-    description: "A sleek travel-booking website offering custom packages, stays, and tour itineraries with a strong focus on high-end UI/UX polish.",
-    tech: ["Next.js", "Tailwind CSS", "React.js", "JavaScript"],
-    githubUrl: "https://github.com/Kaushal2910/TourHouse-Website",
-    demoUrl: "https://tour-house-website.vercel.app/",
-    image: "/projectsImages/Tourhouse.png",
-  },
-];
+function getFilterCategory(p: typeof projectsData[0]): string[] {
+  const cats: string[] = [];
+  if (p.featured) cats.push('Featured');
+  const techStr = p.tech.join(' ').toLowerCase();
+  if (techStr.includes('react native') || techStr.includes('expo')) cats.push('Mobile');
+  if (techStr.includes('next.js') || techStr.includes('react') || techStr.includes('html') || techStr.includes('css')) cats.push('Web');
+  if (techStr.includes('ai') || techStr.includes('python') || techStr.includes('blockchain')) cats.push('AI/ML');
+  return cats;
+}
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.2,
-      duration: 0.5,
-      ease: easeInOut,
-    },
-  }),
-};
+export default function Projects() {
+  const [activeFilter, setActiveFilter] = useState('All');
 
-const Projects = forwardRef<HTMLElement>(function Projects(_, ref) {
+  const filtered = activeFilter === 'All'
+    ? projectsData
+    : projectsData.filter((p) => getFilterCategory(p).includes(activeFilter));
+
   return (
-    <section
-      ref={ref}
-      id="projects"
-      className="min-h-screen bg-slate-950 px-6 py-20 text-slate-100 md:px-12" // reduced padding from py-24 to py-20
-    >
-      <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="text-center text-4xl font-extrabold sm:text-5xl mb-12" // added mb-12 to space below title
-      >
-        Featured Projects
-      </motion.h2>
+    <section id="projects" className="py-24 px-4 bg-[#0a0f1e] relative">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-blue-400 font-mono text-sm mb-2">02.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">Projects</h2>
+        </motion.div>
 
-      {/* Projects Grid */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        {projects.map((p, i) => (
-          <motion.div
-            key={p.title}
-            custom={i}
-            variants={cardVariants}
-            whileHover={{ y: -6 }}
-            className="group flex flex-col overflow-hidden rounded-xl bg-slate-900/70 shadow-lg ring-1 ring-slate-800 transition-all hover:ring-sky-500/60"
-          >
-            {p.image && (
-              <img
-                src={p.image}
-                alt={`${p.title} screenshot`}
-                className="h-40 w-full object-cover transition duration-300 group-hover:scale-105"
-              />
-            )}
+        {/* Filters */}
+        <motion.div
+          className="flex justify-center gap-2 mb-12 flex-wrap"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {filters.map((f) => (
+            <button
+              key={f}
+              onClick={() => setActiveFilter(f)}
+              className={`px-4 py-2 rounded-lg text-sm font-mono transition-all duration-300 ${
+                activeFilter === f
+                  ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                  : 'bg-white/5 text-gray-400 border border-white/5 hover:border-white/10 hover:text-white'
+              }`}
+            >
+              {f}
+            </button>
+          ))}
+        </motion.div>
 
-            <div className="p-5 flex flex-col flex-grow">
-              <h3 className="text-xl font-semibold text-sky-400">{p.title}</h3>
-              <p className="mt-2 text-sm text-slate-300 flex-grow">{p.description}</p>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {p.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full bg-slate-800 px-2 py-1 text-xs font-medium text-slate-300"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-6 flex gap-4">
-                <a
-                  href={p.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                  className="flex items-center gap-1 text-slate-400 hover:text-sky-400"
-                >
-                  <FiGithub size={18} />
-                  <span className="text-sm">Code</span>
-                </a>
-                {p.demoUrl && (
-                  <a
-                    href={p.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Live Demo"
-                    className="flex items-center gap-1 text-slate-400 hover:text-sky-400"
-                  >
-                    <FiExternalLink size={18} />
-                    <span className="text-sm">Live</span>
-                  </a>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filtered.map((project, i) => (
+            <ProjectCard key={project.id} project={project} index={i} />
+          ))}
+        </div>
+      </div>
     </section>
   );
-});
-
-export default Projects;
+}

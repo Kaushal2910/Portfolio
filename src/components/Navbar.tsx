@@ -1,131 +1,93 @@
-// Navbar.tsx
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiMenu, FiX, FiGithub, FiLinkedin, FiInstagram, FiCode } from 'react-icons/fi';
 
 const navLinks = [
-  { href: "/#home", label: "Home" },
-  { href: "/#about", label: "About" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#certifications", label: "Certifications" },
-  { href: "/#github", label: "GitHub" },
-  { href: "/#contact", label: "Contact" },
+  { name: 'About', href: '#about' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Certifications', href: '#certifications' },
+  { name: 'Activity', href: '#github' },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    const hash = href.startsWith("/") ? href.slice(1) : href; // e.g. "/#about" -> "#about"
-
-    if (pathname !== "/") {
-      setIsOpen(false);
-      return; // Let the native link navigation to the homepage handle it
-    }
-
-    e.preventDefault();
-    const target = document.querySelector(hash);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsOpen(false);
-  };
 
   return (
     <motion.nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-[#0a0f1e]/80 backdrop-blur-xl border-b border-white/5'
+          : 'bg-transparent'
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-slate-900/80 backdrop-blur-md shadow-lg" : "bg-transparent"
-      }`}
+      transition={{ duration: 0.6 }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        {/* Logo / Initials */}
-        <Link
-          href="/#home"
-          onClick={(e) => handleLinkClick(e, "/#home")}
-          className="text-2xl font-bold tracking-tighter text-white transition-all hover:text-sky-400"
-        >
-          KS
-        </Link>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <a
+            href="#"
+            aria-label="Back to top"
+            className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 border border-white/10 text-blue-400 hover:border-blue-500/40 hover:bg-blue-500/10 transition-all duration-300"
+          >
+            <FiCode size={18} />
+          </a>
 
-        {/* Desktop Links */}
-        <ul className="hidden space-x-8 md:flex">
-          {navLinks.map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                onClick={(e) => handleLinkClick(e, href)}
-                className="relative text-sm font-medium text-slate-300 transition-colors hover:text-sky-400"
-              >
-                {label}
-                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-sky-400 transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a key={link.name} href={link.href} className="text-sm text-gray-400 hover:text-blue-400 transition-colors font-mono">
+                {link.name}
+              </a>
+            ))}
+            <div className="flex items-center gap-4 ml-4 border-l border-white/10 pl-4">
+              <a href="https://github.com/Kaushal2910" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <FiGithub size={18} />
+              </a>
+              <a href="https://www.linkedin.com/in/kaushal0510" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <FiLinkedin size={18} />
+              </a>
+              <a href="https://www.instagram.com/kaushal_0510_/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <FiInstagram size={18} />
+              </a>
+            </div>
+          </div>
 
-        {/* Mobile Hamburger */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="relative z-50 flex h-8 w-8 flex-col items-center justify-center md:hidden"
-          aria-label="Toggle menu"
-        >
-          <span
-            className={`h-0.5 w-6 bg-white transition-all duration-300 ${
-              isOpen ? "translate-y-1.5 rotate-45" : "-translate-y-0.5"
-            }`}
-          />
-          <span
-            className={`h-0.5 w-6 bg-white transition-all duration-300 ${
-              isOpen ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <span
-            className={`h-0.5 w-6 bg-white transition-all duration-300 ${
-              isOpen ? "-translate-y-1.5 -rotate-45" : "translate-y-0.5"
-            }`}
-          />
-        </button>
+          <button className="md:hidden text-gray-400 hover:text-blue-400 transition-colors" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden bg-[#0a0f1e]/95 backdrop-blur-xl border-b border-white/5"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute left-0 right-0 top-full bg-slate-900/90 backdrop-blur-md md:hidden"
           >
-            <ul className="flex flex-col items-center space-y-6 px-6 py-8">
-              {navLinks.map(({ href, label }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    onClick={(e) => handleLinkClick(e, href)}
-                    className="text-lg font-medium text-slate-300 transition-colors hover:text-sky-400"
-                  >
-                    {label}
-                  </Link>
-                </li>
+            <div className="px-4 py-4 space-y-3">
+              {navLinks.map((link) => (
+                <a key={link.name} href={link.href} className="block text-gray-400 hover:text-blue-400 transition-colors font-mono text-sm py-2" onClick={() => setIsOpen(false)}>
+                  {link.name}
+                </a>
               ))}
-            </ul>
+              <div className="flex items-center gap-4 pt-3 border-t border-white/5">
+                <a href="https://github.com/Kaushal2910" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors"><FiGithub size={18} /></a>
+                <a href="https://www.linkedin.com/in/kaushal0510" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors"><FiLinkedin size={18} /></a>
+                <a href="https://www.instagram.com/kaushal_0510_/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors"><FiInstagram size={18} /></a>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

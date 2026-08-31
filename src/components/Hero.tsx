@@ -1,162 +1,84 @@
-// Hero.tsx
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import Link from "next/link";
-
-const titles = ["Software Engineer", "Cloud Enthusiast", "Freelancer"];
+import { motion } from 'framer-motion';
+import { FiArrowDown, FiArrowUpRight } from 'react-icons/fi';
 
 export default function Hero() {
-  const [currentTitle, setCurrentTitle] = useState("");
-  const [titleIndex, setTitleIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(120);
-
-  useEffect(() => {
-    const handleTyping = () => {
-      const fullTitle = titles[titleIndex];
-      if (isDeleting) {
-        setCurrentTitle(fullTitle.substring(0, currentTitle.length - 1));
-        setTypingSpeed(60);
-      } else {
-        setCurrentTitle(fullTitle.substring(0, currentTitle.length + 1));
-        setTypingSpeed(120);
-      }
-
-      if (!isDeleting && currentTitle === fullTitle) {
-        setTimeout(() => setIsDeleting(true), 1200);
-      } else if (isDeleting && currentTitle === "") {
-        setIsDeleting(false);
-        setTitleIndex((prev) => (prev + 1) % titles.length);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [currentTitle, isDeleting, typingSpeed, titleIndex]);
-
-  const handleDownload = () => {
-    // Delay so tab opens first
-    setTimeout(() => {
-      const link = document.createElement("a");
-      link.href = "/resume.pdf";
-      link.download = "Kaushal_Sonawane_Resume.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }, 500);
-  };
-
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-slate-950 px-6 py-24 text-slate-100 md:px-12">
-      {/* Animated Background */}
-      <div className="pointer-events-none absolute inset-0 z-0">
-        {/* Glowing orbs */}
-        <motion.div
-          className="absolute -left-1/4 -top-1/4 h-[40rem] w-[40rem] rounded-full bg-sky-500/20 blur-[120px]"
-          animate={{
-            scale: [1, 1.2, 1],
-            y: [0, 40, 0],
-            x: [0, 60, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute -bottom-1/4 -right-1/4 h-[40rem] w-[40rem] rounded-full bg-purple-500/20 blur-[120px]"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            y: [0, -40, 0],
-            x: [0, -60, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0f1e]">
+      {/* Subtle professional background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(96,165,250,0.08), transparent 70%), radial-gradient(ellipse 60% 50% at 90% 110%, rgba(99,102,241,0.05), transparent 70%)',
+        }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }}
+      />
 
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10 flex max-w-4xl flex-col items-center text-center"
-      >
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
+      {/* Content */}
+      <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl font-extrabold tracking-tight text-slate-100 sm:text-5xl md:text-6xl"
+          transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-          Kaushal Sonawane
-        </motion.h1>
+          <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight">
+            Kaushal Sonawane
+          </h1>
+          <p className="mt-4 text-xl md:text-2xl font-medium text-slate-300">
+            Software Engineer
+          </p>
+          <p className="mt-3 text-sm font-mono text-slate-500">
+            Cloud · DevOps · AI/ML · Full Stack
+          </p>
+          <p className="mt-6 text-slate-400 max-w-xl mx-auto leading-relaxed">
+            I design, build, and operate cloud infrastructure and full-stack applications from Pune, India.
+          </p>
+        </motion.div>
 
-        {/* Animated Role */}
-        <motion.h2
+        <motion.div
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
+        >
+          <a
+            href="#projects"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-300 text-sm font-medium hover:bg-blue-500/20 hover:border-blue-500/50 transition-all duration-300"
+          >
+            View Projects
+            <FiArrowUpRight size={16} />
+          </a>
+          <a
+            href="mailto:sonawanekaushal05@gmail.com"
+            className="px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-slate-200 text-sm font-medium hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+          >
+            Get in Touch
+          </a>
+        </motion.div>
+
+        <motion.div
+          className="mt-20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-4 h-12 text-2xl font-medium text-sky-400 sm:text-3xl"
+          transition={{ duration: 1, delay: 0.8 }}
         >
-          {currentTitle}
-          <span className="ml-1 inline-block h-full w-1 animate-pulse bg-sky-400" />
-        </motion.h2>
-
-        {/* New Bio */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg"
-        >
-          I’m Kaushal Sonawane, a passionate software engineer and final-year
-          Computer Engineering student. I’ve built multiple responsive and
-          high-performance web applications for global clients, blending
-          technical precision with design aesthetics. My skills span modern
-          frameworks, cloud platforms, and Agile teamwork, with a focus on
-          delivering impactful digital experiences.
-        </motion.p>
-
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
-          className="mt-10"
-        >
-          <Link
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleDownload}
-            className="group relative inline-flex items-center gap-2 rounded-full bg-sky-500 px-6 py-3 text-lg font-semibold text-white shadow-lg shadow-sky-500/30 transition-all hover:bg-sky-600 hover:shadow-xl hover:shadow-sky-600/40 sm:px-8"
+          <a
+            href="#about"
+            className="inline-flex flex-col items-center gap-1 text-slate-500 hover:text-blue-400 transition-colors"
           >
-            <span className="transition-transform group-hover:translate-x-1">
-              Download Resume
-            </span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 transition-transform group-hover:translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-              />
-            </svg>
-          </Link>
+            <span className="text-[11px] tracking-[0.2em] uppercase">Scroll</span>
+            <FiArrowDown className="animate-bounce" />
+          </a>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

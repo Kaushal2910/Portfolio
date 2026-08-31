@@ -1,104 +1,156 @@
-// AboutMe.tsx
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { forwardRef } from "react";
+import { motion } from 'framer-motion';
+import { FiCloud, FiCode, FiServer, FiDatabase } from 'react-icons/fi';
 
-const AboutMe = forwardRef<HTMLElement>(function AboutMe(_, ref) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.1 },
-    },
-  };
+const experiences = [
+  {
+    role: 'Associate DevOps Engineer',
+    company: 'Thynk Technology India',
+    duration: 'Sep 2025 – Mar 2026',
+    description: 'Manage cloud resources on AWS, build CI/CD pipelines with Jenkins, containerize apps using Docker, deploy on AWS and Linux servers.',
+    skills: ['Jenkins', 'Kubernetes', 'AWS', 'Docker', 'Linux', 'CI/CD'],
+  },
+  {
+    role: 'Web Development Intern',
+    company: 'Young Web Solutions',
+    duration: 'Feb 2025 – Jul 2025',
+    description: 'Developed 8+ client websites for UK/US markets using Wix Studio & WordPress, delivering responsive, SEO-friendly designs.',
+    skills: ['WordPress', 'Wix Studio', 'Elementor', 'Divi', 'Web Design'],
+  },
+  {
+    role: 'Internship Trainee (Cloud & Linux)',
+    company: 'CodeZone',
+    duration: 'Dec 2024 – Mar 2025',
+    description: 'Gained hands-on experience with AWS (EC2, S3, IAM), Linux virtualization & networking.',
+    skills: ['AWS', 'Linux', 'Cloud Computing', 'IAM'],
+  },
+  {
+    role: 'Summer Intern (Data Science & AI/ML)',
+    company: 'YBI Foundation',
+    duration: 'Sep 2024 – Oct 2024',
+    description: 'Processed large datasets using Pandas & NumPy, developed basic ML models, created visualizations.',
+    skills: ['Python', 'Pandas', 'NumPy', 'Machine Learning', 'Matplotlib'],
+  },
+];
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+const skills = [
+  { name: 'AWS', icon: FiCloud },
+  { name: 'Docker', icon: FiServer },
+  { name: 'React', icon: FiCode },
+  { name: 'Node.js', icon: FiServer },
+  { name: 'Python', icon: FiCode },
+  { name: 'TypeScript', icon: FiCode },
+  { name: 'Kubernetes', icon: FiCloud },
+  { name: 'Jenkins', icon: FiServer },
+  { name: 'Java', icon: FiCode },
+  { name: 'Tailwind', icon: FiCode },
+  { name: 'PostgreSQL', icon: FiDatabase },
+  { name: 'Linux', icon: FiServer },
+];
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
+export default function About() {
   return (
-    <section
-      ref={ref}
-      id="about"
-      className="min-h-screen bg-slate-900 px-6 py-24 text-slate-100 md:px-12"
-    >
-      <motion.div
-        className="mx-auto max-w-4xl"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        {/* Section Title */}
-        <motion.h2
-          variants={itemVariants}
-          className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
-        >
-          About Me
-        </motion.h2>
-
-        {/* Decorative underline */}
+    <section id="about" className="py-24 px-4 bg-[#0a0f1e] relative">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header */}
         <motion.div
-          variants={itemVariants}
-          className="mx-auto mt-4 h-1 w-24 rounded-full bg-sky-500"
-        />
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-blue-400 font-mono text-sm mb-2">01.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">About Me</h2>
+        </motion.div>
 
         {/* Bio */}
-        <motion.p
-          variants={itemVariants}
-          className="mt-8 text-center text-base leading-relaxed text-slate-300 sm:text-lg"
+        <motion.div
+          className="max-w-3xl mx-auto mb-20 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          I’m Kaushal Sonawane, a final-year Computer Engineering student who
-          loves turning ideas into pixel-perfect, high-performance web apps.
-          Over the past few years I’ve delivered 8+ responsive sites for clients
-          across the UK and US, focusing on accessibility, SEO, and delightful
-          user experiences.
-        </motion.p>
+          <p className="text-gray-400 text-lg leading-relaxed">
+            DevOps &amp; Cloud Engineer from Pune, India, passionate about building scalable systems and intelligent applications.
+            As an Associate DevOps Engineer at Thynk Technology, I specialize in cloud infrastructure, CI/CD pipelines,
+            and full-stack development. I love solving complex problems and continuously learning new technologies.
+          </p>
+        </motion.div>
 
         {/* Skills Grid */}
-        <motion.div variants={itemVariants} className="mt-10">
-          <h3 className="mb-6 text-center text-xl font-semibold text-slate-200">
-            Core Skills
-          </h3>
-          <div className="grid grid-cols-2 gap-4 text-center sm:grid-cols-3 md:grid-cols-4">
-            {[
-              "Next.js",
-              "JavaScript",
-              "Wix",
-              "Node.js",
-              "AWS",
-              "Wordpress",
-              "Figma",
-              "Agile",
-            ].map((skill) => (
+        <motion.div
+          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-20"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {skills.map((skill) => (
+            <motion.div
+              key={skill.name}
+              variants={item}
+              className="flex flex-col items-center gap-2 p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all duration-300 group"
+            >
+              <skill.icon className="text-2xl text-gray-500 group-hover:text-blue-400 transition-colors" />
+              <span className="text-xs text-gray-500 group-hover:text-blue-400/80 transition-colors font-mono">{skill.name}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Experience Timeline */}
+        <motion.div
+          className="max-w-3xl mx-auto"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h3 className="text-xl font-bold text-white mb-8 text-center">Experience</h3>
+          <div className="space-y-8">
+            {experiences.map((exp, i) => (
               <motion.div
-                key={skill}
-                whileHover={{ scale: 1.05 }}
-                className="rounded-lg bg-slate-800/60 px-4 py-3 font-medium text-slate-200 shadow-lg transition-colors hover:bg-sky-500/20"
+                key={i}
+                className="relative pl-8 border-l border-white/10 hover:border-blue-500/30 transition-colors"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                {skill}
+                <div className="absolute left-0 top-1 w-2 h-2 rounded-full bg-blue-400 -translate-x-[5px]" />
+                <div className="flex flex-wrap items-baseline gap-2 mb-1">
+                  <h4 className="text-white font-semibold">{exp.role}</h4>
+                  <span className="text-blue-400/70 text-sm font-mono">@ {exp.company}</span>
+                </div>
+                <p className="text-gray-500 text-sm font-mono mb-2">{exp.duration}</p>
+                <p className="text-gray-400 text-sm mb-3">{exp.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {exp.skills.map((skill) => (
+                    <span key={skill} className="text-xs px-2 py-1 rounded bg-blue-500/10 text-blue-400/80 font-mono">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
         </motion.div>
-
-        {/* CTA */}
-        <motion.div variants={itemVariants} className="mt-12 text-center">
-          <a
-            href="#projects"
-            className="group inline-flex items-center gap-2 rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-sky-500/30 transition-all hover:bg-sky-600 hover:shadow-lg hover:shadow-sky-600/40"
-          >
-            See my work
-            <span className="transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </a>
-        </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
-});
-
-export default AboutMe;
+}

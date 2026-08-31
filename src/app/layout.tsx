@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-// 👇 Import the Navbar component
 import Navbar from "@/components/Navbar";
 
 const geistSans = Geist({
@@ -16,8 +14,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kaushal Sonawane Portfolio",
-  description: "Personal portfolio built with Next.js and Tailwind CSS",
+  title: "Kaushal Sonawane | DevOps & Cloud Engineer",
+  description: "Associate DevOps Engineer specializing in Cloud, DevOps, AI/ML, and Full Stack Development. Pune, India.",
+  keywords: ["DevOps", "Cloud", "AWS", "Kubernetes", "AI", "Full Stack", "Portfolio", "Kaushal Sonawane"],
+  authors: [{ name: "Kaushal Sonawane" }],
+  openGraph: {
+    title: "Kaushal Sonawane | DevOps & Cloud Engineer",
+    description: "Associate DevOps Engineer crafting scalable cloud infrastructure and intelligent applications.",
+    url: "https://kaushalsonawane.dev",
+    siteName: "Kaushal Sonawane Portfolio",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@Kaushal2910",
+  },
+  metadataBase: new URL("https://kaushalsonawane.dev"),
 };
 
 export default function RootLayout({
@@ -26,11 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* 👇 Navbar at the top */}
+    <html lang="en" className="scroll-smooth">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
         {children}
       </body>

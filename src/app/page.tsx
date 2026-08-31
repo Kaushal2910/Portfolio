@@ -1,23 +1,23 @@
 'use client';
-import React from 'react';
+
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
 import Certifications from '@/components/Certifications';
-import { certificates } from '@/data/certificates'; // ✅ import here
-import GitHubGraph from '@/components/GithubGraph';
+import GithubGraph from '@/components/GithubGraph';
 import Footer from '@/components/Footer';
-
+import BackToTopButton from '@/components/BackToTopButton';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-[#0a0f1e] text-white">
       <Hero />
       <About />
       <Projects />
-      <Certifications certificates={certificates} limit={3} /> {/* ✅ pass as prop */}
-      <GitHubGraph />
+      <Certifications />
+      <GithubGraph />
       <Footer />
+      <BackToTopButton />
     </main>
   );
 }

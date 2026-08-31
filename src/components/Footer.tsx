@@ -1,97 +1,61 @@
-// src/components/Contact.tsx
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { forwardRef, useEffect, useState } from "react";
-import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from "react-icons/fi";
-import { AnimatePresence } from "framer-motion";
+import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiMapPin } from 'react-icons/fi';
 
+const socials = [
+  { name: 'GitHub', url: 'https://github.com/Kaushal2910', icon: FiGithub },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/kaushal0510', icon: FiLinkedin },
+  { name: 'Instagram', url: 'https://www.instagram.com/kaushal_0510_', icon: FiInstagram },
+  { name: 'Email', url: 'mailto:sonawanekaushal05@gmail.com', icon: FiMail },
+];
 
-const Contact = forwardRef<HTMLElement>(function Contact(_, ref) {
-  const [showTopBtn, setShowTopBtn] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setShowTopBtn(window.scrollY > 400);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () =>
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
-  const iconLinks = [
-    { Icon: FiGithub, href: "https://github.com/Kaushal2910", label: "GitHub" },
-    { Icon: FiLinkedin, href: "https://www.linkedin.com/in/kaushal0510/", label: "LinkedIn" },
-    { Icon: FiMail, href: "mailto:kaushal.sonawane@example.com", label: "Email" },
-  ];
-
+export default function Footer() {
   return (
-    <footer
-      ref={ref}
-      id="contact"
-      className="relative bg-slate-950 px-6 py-20 text-slate-100 md:px-12"
-    >
-      {/* Let’s Connect */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="flex flex-col items-center"
-      >
-        <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
-          Let&apos;s Connect
-        </h2>
+    <footer id="contact" className="bg-[#0a0f1e] border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Contact Section */}
+        <div className="py-20 text-center">
+          <p className="text-sm font-medium tracking-[0.2em] uppercase text-blue-400 mb-4">Contact</p>
+          <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">Get in touch</h2>
+          <p className="mt-4 text-slate-400 max-w-xl mx-auto leading-relaxed">
+            I&apos;m currently open to new opportunities and interesting projects.
+            Feel free to reach out — I usually reply within a day.
+          </p>
 
-        {/* Social Icons */}
-        <div className="mt-8 flex gap-8">
-          {iconLinks.map(({ Icon, href, label }) => (
-            <motion.a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              whileHover={{ scale: 1.2, y: -3 }}
-              whileTap={{ scale: 0.9 }}
-              className="text-3xl text-slate-400 transition-colors hover:text-sky-400"
-            >
-              <Icon />
-            </motion.a>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Footer Text */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-        className="mt-12 text-center text-sm text-slate-500"
-      >
-        <p>© {new Date().getFullYear()} Kaushal Sonawane. All rights reserved.</p>
-      </motion.div>
-
-      {/* Back to Top Button */}
-      <AnimatePresence>
-        {showTopBtn && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            onClick={scrollToTop}
-            aria-label="Back to top"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="fixed bottom-6 right-6 z-40 rounded-full bg-sky-500/10 p-3 text-sky-400 ring-1 ring-sky-500/40 backdrop-blur-sm transition-all hover:bg-sky-500/20 hover:shadow-lg hover:shadow-sky-500/50"
+          <a
+            href="mailto:sonawanekaushal05@gmail.com"
+            className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-300 text-sm font-medium hover:bg-blue-500/20 hover:border-blue-500/50 transition-all duration-300"
           >
-            <FiArrowUp size={20} />
-          </motion.button>
-        )}
-      </AnimatePresence>
+            <FiMail size={16} />
+            sonawanekaushal05@gmail.com
+          </a>
+
+          <div className="mt-10 flex items-center justify-center gap-3">
+            {socials.map((s) => (
+              <a
+                key={s.name}
+                href={s.url}
+                target={s.url.startsWith('mailto') ? undefined : '_blank'}
+                rel={s.url.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                aria-label={s.name}
+                title={s.name}
+                className="p-3 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-300"
+              >
+                <s.icon size={18} />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="py-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500">
+          <p>&copy; {new Date().getFullYear()} Kaushal Sonawane</p>
+          <p className="inline-flex items-center gap-1.5">
+            <FiMapPin size={14} /> Pune, India
+          </p>
+          <p>Built with Next.js &amp; Tailwind CSS</p>
+        </div>
+      </div>
     </footer>
   );
-});
-
-export default Contact;
+}
