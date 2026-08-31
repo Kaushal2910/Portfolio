@@ -10,7 +10,7 @@ import BackToTopButton from '@/components/BackToTopButton';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0a0f1e] text-white">
+    <main className="min-h-screen bg-black text-white">
       <Hero />
       <About />
       <Projects />

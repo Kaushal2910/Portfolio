@@ -11,11 +11,11 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-[#0a0f1e] border-t border-white/5">
+    <footer id="contact" className="bg-black border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Contact Section */}
         <div className="py-20 text-center">
-          <p className="text-sm font-medium tracking-[0.2em] uppercase text-blue-400 mb-4">Contact</p>
+          <p className="text-sm font-medium tracking-[0.2em] uppercase text-white/60 mb-4">Contact</p>
           <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">Get in touch</h2>
           <p className="mt-4 text-slate-400 max-w-xl mx-auto leading-relaxed">
             I&apos;m currently open to new opportunities and interesting projects.
@@ -24,7 +24,7 @@ export default function Footer() {
 
           <a
             href="mailto:sonawanekaushal05@gmail.com"
-            className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-300 text-sm font-medium hover:bg-blue-500/20 hover:border-blue-500/50 transition-all duration-300"
+            className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/[0.06] border border-white/[0.12] text-white/80 text-sm font-medium hover:bg-white/[0.1] hover:border-white/[0.2] transition-all duration-300"
           >
             <FiMail size={16} />
             sonawanekaushal05@gmail.com

@@ -16,7 +16,7 @@ export default function CertificateCard({ cert, index }: Props) {
   return (
     <>
       <motion.div
-        className="group relative rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 hover:border-blue-500/20 hover:bg-white/[0.04] transition-all duration-300 cursor-pointer"
+        className="group relative rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 hover:border-white/20 hover:bg-white/[0.04] transition-all duration-300 cursor-pointer"
         onClick={() => setShowModal(true)}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -25,7 +25,7 @@ export default function CertificateCard({ cert, index }: Props) {
         whileHover={{ y: -4 }}
       >
         {/* Image */}
-        <div className="relative h-44 overflow-hidden bg-gradient-to-br from-blue-500/5 to-transparent">
+        <div className="relative h-44 overflow-hidden bg-gradient-to-br from-white/[0.06] to-transparent">
           <img
             src={cert.imageUrl}
             alt={cert.title}
@@ -40,7 +40,7 @@ export default function CertificateCard({ cert, index }: Props) {
 
         {/* Content */}
         <div className="p-4">
-          <h4 className="text-sm font-semibold text-white group-hover:text-blue-400 transition-colors line-clamp-2 mb-1">
+          <h4 className="text-sm font-semibold text-white group-hover:text-white transition-colors line-clamp-2 mb-1">
             {cert.title}
           </h4>
           {cert.issuer && (
@@ -104,7 +104,7 @@ export default function CertificateCard({ cert, index }: Props) {
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-500/15 text-blue-300 border border-blue-500/30 hover:bg-blue-500/25 hover:border-blue-500/50 transition-all text-sm font-mono"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] text-white/80 border border-white/[0.12] hover:bg-white/[0.1] hover:border-white/20 transition-all text-sm font-mono"
               >
                 <FiDownload size={14} /> Download PDF
               </a>

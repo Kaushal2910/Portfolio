@@ -64,7 +64,7 @@ const item = {
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-4 bg-[#0a0f1e] relative">
+    <section id="about" className="py-24 px-4 bg-black relative">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -74,7 +74,7 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-blue-400 font-mono text-sm mb-2">01.</p>
+          <p className="text-white/60 font-mono text-sm mb-2">01.</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white">About Me</h2>
         </motion.div>
 
@@ -105,10 +105,10 @@ export default function About() {
             <motion.div
               key={skill.name}
               variants={item}
-              className="flex flex-col items-center gap-2 p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all duration-300 group"
+              className="flex flex-col items-center gap-2 p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/[0.12] hover:bg-white/[0.03] transition-all duration-300 group"
             >
-              <skill.icon className="text-2xl text-gray-500 group-hover:text-blue-400 transition-colors" />
-              <span className="text-xs text-gray-500 group-hover:text-blue-400/80 transition-colors font-mono">{skill.name}</span>
+              <skill.icon className="text-2xl text-gray-500 group-hover:text-white/60 transition-colors" />
+              <span className="text-xs text-gray-500 group-hover:text-white/60/80 transition-colors font-mono">{skill.name}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -126,22 +126,22 @@ export default function About() {
             {experiences.map((exp, i) => (
               <motion.div
                 key={i}
-                className="relative pl-8 border-l border-white/10 hover:border-blue-500/30 transition-colors"
+                className="relative pl-8 border-l border-white/10 hover:border-white/[0.12] transition-colors"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <div className="absolute left-0 top-1 w-2 h-2 rounded-full bg-blue-400 -translate-x-[5px]" />
+                <div className="absolute left-0 top-1 w-2 h-2 rounded-full bg-white/60 -translate-x-[5px]" />
                 <div className="flex flex-wrap items-baseline gap-2 mb-1">
                   <h4 className="text-white font-semibold">{exp.role}</h4>
-                  <span className="text-blue-400/70 text-sm font-mono">@ {exp.company}</span>
+                  <span className="text-white/60/70 text-sm font-mono">@ {exp.company}</span>
                 </div>
                 <p className="text-gray-500 text-sm font-mono mb-2">{exp.duration}</p>
                 <p className="text-gray-400 text-sm mb-3">{exp.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {exp.skills.map((skill) => (
-                    <span key={skill} className="text-xs px-2 py-1 rounded bg-blue-500/10 text-blue-400/80 font-mono">
+                    <span key={skill} className="text-xs px-2 py-1 rounded bg-white/[0.05] text-white/60/80 font-mono">
                       {skill}
                     </span>
                   ))}

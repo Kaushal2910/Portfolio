@@ -7,7 +7,7 @@ const GitHubCalendar = dynamic(() => import('react-github-calendar'), { ssr: fal
 
 export default function GithubGraph() {
   return (
-    <section id="github" className="py-24 px-4 bg-[#0a0f1e] relative">
+    <section id="github" className="py-24 px-4 bg-black relative">
       <div className="max-w-4xl mx-auto">
         <motion.div
           className="text-center mb-12"
@@ -16,7 +16,7 @@ export default function GithubGraph() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-blue-400 font-mono text-sm mb-2">04.</p>
+          <p className="text-white/60 font-mono text-sm mb-2">04.</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white">GitHub Activity</h2>
         </motion.div>
 

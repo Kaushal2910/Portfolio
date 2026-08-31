@@ -41,7 +41,7 @@ export default function Certifications({ mode = 'preview' }: Props) {
   const showViewAllLink = mode === 'preview';
 
   return (
-    <section id="certifications" className="py-24 px-4 bg-[#0a0f1e] relative">
+    <section id="certifications" className="py-24 px-4 bg-black relative">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -51,7 +51,7 @@ export default function Certifications({ mode = 'preview' }: Props) {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-blue-400 font-mono text-sm mb-2">
+          <p className="text-white/60 font-mono text-sm mb-2">
             {mode === 'full' ? 'All Credentials' : '03.'}
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white">
@@ -82,14 +82,14 @@ export default function Certifications({ mode = 'preview' }: Props) {
                 }}
                 className={`group inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-mono transition-all duration-300 border ${
                   isActive
-                    ? 'bg-blue-500/15 text-blue-400 border-blue-500/40 shadow-[0_0_20px_-5px_rgba(96,165,250,0.3)]'
+                    ? 'bg-white/[0.06] text-white/60 border-white/20 shadow-[0_0_20px_-5px_rgba(255,255,255,0.2)]'
                     : 'bg-white/[0.02] text-gray-400 border-white/5 hover:border-white/15 hover:text-white'
                 }`}
               >
                 {cat.label}
                 <span
                   className={`text-xs px-1.5 py-0.5 rounded-full transition-colors ${
-                    isActive ? 'bg-blue-500/20 text-blue-300' : 'bg-white/5 text-gray-500'
+                    isActive ? 'bg-white/[0.08] text-white/70' : 'bg-white/5 text-gray-500'
                   }`}
                 >
                   {count}
@@ -133,7 +133,7 @@ export default function Certifications({ mode = 'preview' }: Props) {
               href="/certificates"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.02] border border-white/10 text-gray-300 hover:text-blue-400 hover:border-blue-500/40 hover:bg-blue-500/5 transition-all duration-300 font-mono text-sm"
+              className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.02] border border-white/10 text-gray-300 hover:text-white/60 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-300 font-mono text-sm"
             >
               <FiGrid size={16} />
               View all {certificates.length} certificates
@@ -154,7 +154,7 @@ export default function Certifications({ mode = 'preview' }: Props) {
           >
             <button
               onClick={() => setActiveCategory('All')}
-              className="inline-flex items-center gap-1.5 text-xs font-mono text-gray-500 hover:text-blue-400 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-mono text-gray-500 hover:text-white/60 transition-colors"
             >
               <FiX size={12} /> Clear filter
             </button>
@@ -175,7 +175,7 @@ export default function Certifications({ mode = 'preview' }: Props) {
             <span className="hidden sm:inline text-gray-700">·</span>
             <a
               href="/#certifications"
-              className="text-xs font-mono text-gray-500 hover:text-blue-400 transition-colors"
+              className="text-xs font-mono text-gray-500 hover:text-white/60 transition-colors"
             >
               ← Back to home
             </a>

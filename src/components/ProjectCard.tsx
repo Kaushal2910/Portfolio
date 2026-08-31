@@ -11,12 +11,12 @@ interface Props {
 }
 
 const gradientColors: Record<string, string> = {
-  'RelationOS': 'from-violet-500/20 to-blue-500/10',
-  'LoopHire': 'from-blue-500/20 to-cyan-500/10',
-  'NeuroBiz': 'from-indigo-500/20 to-purple-500/10',
-  'MediTrack': 'from-emerald-500/20 to-teal-500/10',
-  'Trendzz': 'from-rose-500/20 to-orange-500/10',
-  'Sanz Café': 'from-amber-500/20 to-yellow-500/10',
+  'RelationOS': 'from-white/[0.08] to-white/[0.02]',
+  'LoopHire': 'from-white/[0.08] to-white/[0.02]',
+  'NeuroBiz': 'from-white/[0.08] to-white/[0.02]',
+  'MediTrack': 'from-white/[0.08] to-white/[0.02]',
+  'Trendzz': 'from-white/[0.08] to-white/[0.02]',
+  'Sanz Café': 'from-white/[0.08] to-white/[0.02]',
 };
 
 export default function ProjectCard({ project, index }: Props) {
@@ -43,7 +43,7 @@ export default function ProjectCard({ project, index }: Props) {
   return (
     <motion.div
       ref={cardRef}
-      className="group relative rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 hover:border-blue-500/20 transition-all duration-500"
+      className="group relative rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 hover:border-amber-400/30 transition-all duration-500"
       style={{ transform, transition: 'transform 0.3s ease-out' }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -53,20 +53,16 @@ export default function ProjectCard({ project, index }: Props) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       {/* Image Area */}
-      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-blue-500/5 to-transparent">
+      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-white/[0.06] to-transparent">
         {!imgError ? (
           <img
             src={project.image}
             alt={project.title}
-            className={`w-full h-full ${
-            project.title === 'RelationOS' || project.title === 'NeuroBiz'
-              ? 'object-contain p-2'
-              : 'object-cover'
-          } opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500`}
+            className="w-full h-full object-contain p-2 opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
             onError={() => setImgError(true)}
           />
         ) : (
-          <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${gradientColors[project.title] || 'from-blue-500/10 to-gray-500/10'}`}>
+          <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${gradientColors[project.title] || 'from-white/[0.06] to-white/[0.02]'}`}>
             <span className="text-5xl font-bold text-white/10 select-none">
               {project.title.charAt(0)}
             </span>
@@ -74,7 +70,7 @@ export default function ProjectCard({ project, index }: Props) {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
         {project.featured && (
-          <span className="absolute top-3 right-3 text-xs px-2 py-1 rounded-full bg-blue-500/20 text-blue-400 font-mono border border-blue-500/20">
+          <span className="absolute top-3 right-3 text-xs px-2 py-1 rounded-full bg-amber-400/20 text-amber-400 font-mono border border-amber-400/30">
             Featured
           </span>
         )}
@@ -82,7 +78,7 @@ export default function ProjectCard({ project, index }: Props) {
 
       {/* Content */}
       <div className="p-5">
-        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
           {project.title}
         </h3>
         <p className="text-gray-400 text-sm mb-4 line-clamp-3">
@@ -104,7 +100,7 @@ export default function ProjectCard({ project, index }: Props) {
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-blue-400 transition-colors font-mono"
+            className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-amber-400 transition-colors font-mono"
           >
             <FiGithub size={14} /> Code
           </a>
@@ -113,7 +109,7 @@ export default function ProjectCard({ project, index }: Props) {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-blue-400 transition-colors font-mono"
+              className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-amber-400 transition-colors font-mono"
             >
               <FiExternalLink size={14} /> Live
             </a>

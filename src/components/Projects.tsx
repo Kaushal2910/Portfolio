@@ -25,7 +25,7 @@ export default function Projects() {
     : projectsData.filter((p) => getFilterCategory(p).includes(activeFilter));
 
   return (
-    <section id="projects" className="py-24 px-4 bg-[#0a0f1e] relative">
+    <section id="projects" className="py-24 px-4 bg-black relative">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -35,7 +35,7 @@ export default function Projects() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-blue-400 font-mono text-sm mb-2">02.</p>
+          <p className="text-white/60 font-mono text-sm mb-2">02.</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white">Projects</h2>
         </motion.div>
 
@@ -53,7 +53,7 @@ export default function Projects() {
               onClick={() => setActiveFilter(f)}
               className={`px-4 py-2 rounded-lg text-sm font-mono transition-all duration-300 ${
                 activeFilter === f
-                  ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                  ? 'bg-white/[0.08] text-white/60 border border-white/[0.12]'
                   : 'bg-white/5 text-gray-400 border border-white/5 hover:border-white/10 hover:text-white'
               }`}
             >
