@@ -7,7 +7,7 @@ const GitHubCalendar = dynamic(() => import('react-github-calendar'), { ssr: fal
 
 export default function GithubGraph() {
   return (
-    <section id="github" className="py-24 px-4 bg-black relative">
+    <section id="github" className="py-24 px-4 bg-black relative scroll-mt-16">
       <div className="max-w-4xl mx-auto">
         <motion.div
           className="text-center mb-12"
@@ -21,22 +21,26 @@ export default function GithubGraph() {
         </motion.div>
 
         <motion.div
-          className="flex justify-center p-6 rounded-2xl bg-white/[0.02] border border-white/5"
+          className="p-6 rounded-2xl bg-white/[0.02] border border-white/5"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <GitHubCalendar
-            username="Kaushal2910"
-            colorScheme="dark"
-            fontSize={12}
-            blockSize={12}
-            blockMargin={3}
-            labels={{
-              totalCount: '{{count}} contributions',
-            }}
-          />
+          <div className="w-full overflow-x-auto">
+            <div className="min-w-max mx-auto">
+              <GitHubCalendar
+                username="Kaushal2910"
+                colorScheme="dark"
+                fontSize={12}
+                blockSize={12}
+                blockMargin={3}
+                labels={{
+                  totalCount: '{{count}} contributions',
+                }}
+              />
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

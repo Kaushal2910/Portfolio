@@ -1,33 +1,5 @@
 [
   {
-    "id": "1",
-    "title": "LoopHire",
-    "description": "An automated career pipeline assistant that scrapes developer job postings, scores profile matches, and dynamically generates ATS-optimized CVs and cover letters.",
-    "tech": [
-      "Python",
-      "AI",
-      "BeautifulSoup",
-      "docx"
-    ],
-    "githubUrl": "https://github.com/Kaushal2910/LoopHire",
-    "image": "/projectsImages/LoopHire.png",
-    "featured": true
-  },
-  {
-    "id": "2",
-    "title": "NeuroBiz",
-    "description": "AI-powered business platform featuring analytics, automation, and intelligent insights designed to streamline enterprise workflows.",
-    "tech": [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Node.js"
-    ],
-    "githubUrl": "https://github.com/Kaushal2910/NeuroBiz",
-    "image": "/projectsImages/Neurobiz.png",
-    "featured": false
-  },
-  {
     "id": "3",
     "title": "RelationOS",
     "description": "A centralized mobile operating system for managing personal relationships, communication logs, reminders, and life events.",
@@ -53,6 +25,35 @@
     ],
     "githubUrl": "https://github.com/Kaushal2910/MediTrack",
     "image": "/projectsImages/meditrack.png",
+    "featured": false
+  },
+  {
+    "id": "1",
+    "title": "LoopHire",
+    "description": "An automated career pipeline assistant that scrapes developer job postings, scores profile matches, and dynamically generates ATS-optimized CVs and cover letters.",
+    "tech": [
+      "Python",
+      "AI",
+      "BeautifulSoup",
+      "docx"
+    ],
+    "githubUrl": "https://github.com/Kaushal2910/LoopHire",
+    "image": "/projectsImages/LoopHire.png",
+    "featured": true,
+    "demoUrl": ""
+  },
+  {
+    "id": "2",
+    "title": "NeuroBiz",
+    "description": "AI-powered business platform featuring analytics, automation, and intelligent insights designed to streamline enterprise workflows.",
+    "tech": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js"
+    ],
+    "githubUrl": "https://github.com/Kaushal2910/NeuroBiz",
+    "image": "/projectsImages/Neurobiz.png",
     "featured": false
   },
   {

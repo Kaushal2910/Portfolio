@@ -4,8 +4,10 @@ import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiArrowUpRight, FiGrid, FiX } from 'react-icons/fi';
 import CertificateCard from './CertificateCard';
-import { certificates, certificateCategories } from '@/data/certificates';
-import type { CertificateCategory } from '@/types';
+import { certificates } from '@/data/certificates';
+import categoryData from '../../data/certificate-categories.json';
+
+const certificateCategories = [{ id: 'All', label: 'All' }, ...categoryData];
 
 const TOP_COUNT = 3;
 
@@ -14,7 +16,7 @@ interface Props {
 }
 
 export default function Certifications({ mode = 'preview' }: Props) {
-  const [activeCategory, setActiveCategory] = useState<CertificateCategory | 'All'>('All');
+  const [activeCategory, setActiveCategory] = useState<string>('All');
   const [showAllPreview, setShowAllPreview] = useState(false);
 
   const filtered = useMemo(() => {
@@ -34,14 +36,16 @@ export default function Certifications({ mode = 'preview' }: Props) {
   // Determine what to show in the grid
   const visibleCerts = useMemo(() => {
     if (mode === 'full') return filtered;
-    // preview mode (homepage): always cap at TOP_COUNT (3), regardless of category
-    return filtered.slice(0, TOP_COUNT);
-  }, [mode, filtered]);
+    // preview mode (homepage): cap at TOP_COUNT (3) only when unfiltered,
+    // otherwise show every match for the selected category
+    if (activeCategory === 'All') return filtered.slice(0, TOP_COUNT);
+    return filtered;
+  }, [mode, filtered, activeCategory]);
 
   const showViewAllLink = mode === 'preview';
 
   return (
-    <section id="certifications" className="py-24 px-4 bg-black relative">
+    <section id="certifications" className="py-24 px-4 bg-black relative scroll-mt-16">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -80,9 +84,10 @@ export default function Certifications({ mode = 'preview' }: Props) {
                   setActiveCategory(cat.id);
                   setShowAllPreview(false);
                 }}
+                aria-pressed={isActive}
                 className={`group inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-mono transition-all duration-300 border ${
                   isActive
-                    ? 'bg-white/[0.06] text-white/60 border-white/20 shadow-[0_0_20px_-5px_rgba(255,255,255,0.2)]'
+                    ? 'bg-white/[0.12] text-white border-amber-400/40 shadow-[0_0_20px_-5px_rgba(255,255,255,0.2)]'
                     : 'bg-white/[0.02] text-gray-400 border-white/5 hover:border-white/15 hover:text-white'
                 }`}
               >
@@ -131,8 +136,6 @@ export default function Certifications({ mode = 'preview' }: Props) {
           >
             <a
               href="/certificates"
-              target="_blank"
-              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.02] border border-white/10 text-gray-300 hover:text-white/60 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-300 font-mono text-sm"
             >
               <FiGrid size={16} />
@@ -173,6 +176,7 @@ export default function Certifications({ mode = 'preview' }: Props) {
               Showing {visibleCerts.length} of {certificates.length} credentials
             </p>
             <span className="hidden sm:inline text-gray-700">·</span>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- anchor jump to homepage section */}
             <a
               href="/#certifications"
               className="text-xs font-mono text-gray-500 hover:text-white/60 transition-colors"

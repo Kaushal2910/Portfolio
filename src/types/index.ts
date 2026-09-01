@@ -9,7 +9,9 @@ export interface Project {
   featured: boolean;
 }
 
-export type CertificateCategory = 'Cloud & DevOps' | 'AI & Data' | 'Skills & Experience';
+// Categories are user-manageable at runtime (data/certificate-categories.json),
+// so this is a string alias rather than a closed union.
+export type CertificateCategory = string;
 
 export interface Certificate {
   id: string;
@@ -19,6 +21,11 @@ export interface Certificate {
   category: CertificateCategory;
   issuer?: string;
   year?: string;
+}
+
+export interface CertificateCategoryItem {
+  id: string;
+  label: string;
 }
 
 export interface Experience {

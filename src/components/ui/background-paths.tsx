@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 export function FloatingPaths({ position }: { position: number }) {
+    const prefersReducedMotion = useReducedMotion();
     const paths = Array.from({ length: 36 }, (_, i) => ({
         id: i,
         d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
@@ -32,17 +33,25 @@ export function FloatingPaths({ position }: { position: number }) {
                         stroke="currentColor"
                         strokeWidth={path.width}
                         strokeOpacity={0.06 + path.id * 0.008}
-                        initial={{ pathLength: 0.3, opacity: 0.4 }}
-                        animate={{
-                            pathLength: 1,
-                            opacity: [0.15, 0.4, 0.15],
-                            pathOffset: [0, 1, 0],
-                        }}
-                        transition={{
-                            duration: 20 + Math.random() * 10,
-                            repeat: Number.POSITIVE_INFINITY,
-                            ease: "linear",
-                        }}
+                        initial={{ pathLength: prefersReducedMotion ? 1 : 0.3, opacity: 0.4 }}
+                        animate={
+                            prefersReducedMotion
+                                ? undefined
+                                : {
+                                      pathLength: 1,
+                                      opacity: [0.15, 0.4, 0.15],
+                                      pathOffset: [0, 1, 0],
+                                  }
+                        }
+                        transition={
+                            prefersReducedMotion
+                                ? { duration: 0 }
+                                : {
+                                      duration: 20 + Math.random() * 10,
+                                      repeat: Number.POSITIVE_INFINITY,
+                                      ease: "linear",
+                                  }
+                        }
                     />
                 ))}
             </svg>

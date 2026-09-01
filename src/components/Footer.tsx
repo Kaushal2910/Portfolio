@@ -11,7 +11,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-black border-t border-white/5">
+    <footer id="contact" className="bg-black border-t border-white/5 scroll-mt-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Contact Section */}
         <div className="py-20 text-center">
@@ -53,7 +53,6 @@ export default function Footer() {
           <p className="inline-flex items-center gap-1.5">
             <FiMapPin size={14} /> Pune, India
           </p>
-          <p>Built with Next.js &amp; Tailwind CSS</p>
         </div>
       </div>
     </footer>

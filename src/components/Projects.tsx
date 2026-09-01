@@ -24,8 +24,15 @@ export default function Projects() {
     ? projectsData
     : projectsData.filter((p) => getFilterCategory(p).includes(activeFilter));
 
+  const filterCounts = filters.reduce<Record<string, number>>((acc, f) => {
+    acc[f] = f === 'All'
+      ? projectsData.length
+      : projectsData.filter((p) => getFilterCategory(p).includes(f)).length;
+    return acc;
+  }, {});
+
   return (
-    <section id="projects" className="py-24 px-4 bg-black relative">
+    <section id="projects" className="py-24 px-4 bg-black relative scroll-mt-16">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -51,13 +58,21 @@ export default function Projects() {
             <button
               key={f}
               onClick={() => setActiveFilter(f)}
-              className={`px-4 py-2 rounded-lg text-sm font-mono transition-all duration-300 ${
+              aria-pressed={activeFilter === f}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-mono transition-all duration-300 border ${
                 activeFilter === f
-                  ? 'bg-white/[0.08] text-white/60 border border-white/[0.12]'
-                  : 'bg-white/5 text-gray-400 border border-white/5 hover:border-white/10 hover:text-white'
+                  ? 'bg-white/[0.12] text-white border-amber-400/40'
+                  : 'bg-white/5 text-gray-400 border-white/5 hover:border-white/10 hover:text-white'
               }`}
             >
               {f}
+              <span
+                className={`text-xs px-1.5 py-0.5 rounded-full ${
+                  activeFilter === f ? 'bg-white/[0.08] text-white/70' : 'bg-white/5 text-gray-500'
+                }`}
+              >
+                {filterCounts[f]}
+              </span>
             </button>
           ))}
         </motion.div>
@@ -67,6 +82,11 @@ export default function Projects() {
           {filtered.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
+          {filtered.length === 0 && (
+            <div className="col-span-full text-center py-16 text-gray-500 font-mono text-sm">
+              No projects in this category yet.
+            </div>
+          )}
         </div>
       </div>
     </section>

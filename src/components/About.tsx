@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FiCloud, FiCode, FiServer, FiDatabase } from 'react-icons/fi';
+import { SiAmazonwebservices, SiDocker, SiReact, SiNodedotjs, SiPython, SiTypescript, SiKubernetes, SiJenkins, SiOpenjdk, SiTailwindcss, SiPostgresql, SiLinux } from 'react-icons/si';
 
 const experiences = [
   {
@@ -35,18 +35,18 @@ const experiences = [
 ];
 
 const skills = [
-  { name: 'AWS', icon: FiCloud },
-  { name: 'Docker', icon: FiServer },
-  { name: 'React', icon: FiCode },
-  { name: 'Node.js', icon: FiServer },
-  { name: 'Python', icon: FiCode },
-  { name: 'TypeScript', icon: FiCode },
-  { name: 'Kubernetes', icon: FiCloud },
-  { name: 'Jenkins', icon: FiServer },
-  { name: 'Java', icon: FiCode },
-  { name: 'Tailwind', icon: FiCode },
-  { name: 'PostgreSQL', icon: FiDatabase },
-  { name: 'Linux', icon: FiServer },
+  { name: 'AWS', icon: SiAmazonwebservices },
+  { name: 'Docker', icon: SiDocker },
+  { name: 'React', icon: SiReact },
+  { name: 'Node.js', icon: SiNodedotjs },
+  { name: 'Python', icon: SiPython },
+  { name: 'TypeScript', icon: SiTypescript },
+  { name: 'Kubernetes', icon: SiKubernetes },
+  { name: 'Jenkins', icon: SiJenkins },
+  { name: 'Java', icon: SiOpenjdk },
+  { name: 'Tailwind', icon: SiTailwindcss },
+  { name: 'PostgreSQL', icon: SiPostgresql },
+  { name: 'Linux', icon: SiLinux },
 ];
 
 const container = {
@@ -64,7 +64,7 @@ const item = {
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-4 bg-black relative">
+    <section id="about" className="py-24 px-4 bg-black relative scroll-mt-16">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -107,8 +107,8 @@ export default function About() {
               variants={item}
               className="flex flex-col items-center gap-2 p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/[0.12] hover:bg-white/[0.03] transition-all duration-300 group"
             >
-              <skill.icon className="text-2xl text-gray-500 group-hover:text-white/60 transition-colors" />
-              <span className="text-xs text-gray-500 group-hover:text-white/60/80 transition-colors font-mono">{skill.name}</span>
+              <skill.icon className="text-2xl text-gray-500 group-hover:text-white/80 transition-colors" />
+              <span className="text-xs text-gray-500 group-hover:text-white/80 transition-colors font-mono">{skill.name}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -135,13 +135,13 @@ export default function About() {
                 <div className="absolute left-0 top-1 w-2 h-2 rounded-full bg-white/60 -translate-x-[5px]" />
                 <div className="flex flex-wrap items-baseline gap-2 mb-1">
                   <h4 className="text-white font-semibold">{exp.role}</h4>
-                  <span className="text-white/60/70 text-sm font-mono">@ {exp.company}</span>
+                  <span className="text-white/70 text-sm font-mono">@ {exp.company}</span>
                 </div>
                 <p className="text-gray-500 text-sm font-mono mb-2">{exp.duration}</p>
                 <p className="text-gray-400 text-sm mb-3">{exp.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {exp.skills.map((skill) => (
-                    <span key={skill} className="text-xs px-2 py-1 rounded bg-white/[0.05] text-white/60/80 font-mono">
+                    <span key={skill} className="text-xs px-2 py-1 rounded bg-white/[0.05] text-white/80 font-mono">
                       {skill}
                     </span>
                   ))}
