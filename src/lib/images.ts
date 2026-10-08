@@ -46,6 +46,21 @@ export function validateImageFile(
   return null;
 }
 
+/** Validate a PDF upload (certificate downloads, resume). */
+export function validatePdfFile(
+  file: { name: string; type: string; size: number },
+  maxMB = MAX_IMAGE_MB
+): string | null {
+  if (extOf(file.name) !== "pdf" || file.type !== "application/pdf") {
+    return `“${file.name}” isn’t a PDF. Export it as .pdf first.`;
+  }
+  if (file.size > maxMB * 1024 * 1024) {
+    return `“${file.name}” is ${(file.size / 1048576).toFixed(1)} MB — keep it under ${maxMB} MB.`;
+  }
+  if (file.size === 0) return `“${file.name}” is empty.`;
+  return null;
+}
+
 /** Canonical extension for a validated MIME type (preserves the real format). */
 export function extFromMime(mime: string): string {
   return mime === "image/png" ? "png" : "jpg";

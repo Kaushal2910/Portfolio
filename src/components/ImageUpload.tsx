@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
-import { IMAGE_ACCEPT, validateImageFile } from "@/lib/images";
+import { DOC_ACCEPT, IMAGE_ACCEPT, validateImageFile, validatePdfFile } from "@/lib/images";
 
 interface Props {
   label: string;
@@ -11,13 +11,15 @@ interface Props {
   target?: "profile" | "resume";
   value: string;
   onChange: (path: string) => void;
+  /** "image" (PNG/JPG/JPEG + thumbnail preview) or "pdf" (PDF + filename chip) */
+  mode?: "image" | "pdf";
   accept?: string;
   hint?: string;
 }
 
 /**
- * Reusable upload field: preview (aspect preserved) → validate ext+MIME →
- * upload → replace / remove. Used for profile, project and certificate images.
+ * Reusable upload field: preview → validate ext+MIME → upload → replace / remove.
+ * mode="image" for profile/project/certificate photos, mode="pdf" for downloads.
  */
 export default function ImageUpload({
   label,
@@ -25,8 +27,9 @@ export default function ImageUpload({
   target,
   value,
   onChange,
-  accept = IMAGE_ACCEPT,
-  hint = "PNG, JPG or JPEG · max 10 MB",
+  mode = "image",
+  accept = mode === "pdf" ? DOC_ACCEPT : IMAGE_ACCEPT,
+  hint = mode === "pdf" ? "PDF only · max 10 MB" : "PNG, JPG or JPEG · max 10 MB",
 }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -41,12 +44,12 @@ export default function ImageUpload({
 
   const pick = async (file: File) => {
     setError("");
-    const problem = validateImageFile(file);
+    const problem = mode === "pdf" ? validatePdfFile(file) : validateImageFile(file);
     if (problem) {
       setError(problem);
       return;
     }
-    setPreview(URL.createObjectURL(file)); // instant preview, original ratio
+    if (mode === "image") setPreview(URL.createObjectURL(file)); // instant preview, original ratio
     setBusy(true);
     try {
       const fd = new FormData();
@@ -72,8 +75,14 @@ export default function ImageUpload({
       <p className="mb-1.5 font-mono text-[11px] uppercase tracking-widest text-[#edeae2]/50">{label}</p>
       {src ? (
         <div className="relative mb-2 overflow-hidden rounded-lg border border-[rgba(237,234,226,0.15)] bg-black/30">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} alt={`${label} preview`} className="max-h-44 w-full object-contain" />
+          {mode === "pdf" ? (
+            <p className="truncate px-3 py-2.5 font-mono text-xs text-[#edeae2]/80">
+              📄 {src.split("/").pop()}
+            </p>
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img src={src} alt={`${label} preview`} className="max-h-44 w-full object-contain" />
+          )}
           <button
             type="button"
             onClick={() => {
@@ -104,7 +113,7 @@ export default function ImageUpload({
           disabled={busy}
           className="whitespace-nowrap rounded-md border border-[rgba(237,234,226,0.15)] px-3 py-2 font-mono text-xs text-[#edeae2]/70 hover:border-[#ff4d00] hover:text-white disabled:opacity-60"
         >
-          {busy ? "Uploading…" : src ? "Replace image" : "Choose image"}
+          {busy ? "Uploading…" : src ? (mode === "pdf" ? "Replace PDF" : "Replace image") : (mode === "pdf" ? "Choose PDF" : "Choose image")}
         </button>
         <input
           value={value}
