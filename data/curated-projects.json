@@ -1,0 +1,33 @@
+{
+  "loophire": {
+    "featuredRank": 1,
+    "title": "LoopHire",
+    "blurb": "Automated career pipeline — scrapes dev jobs, scores fit against your profile, generates ATS-ready CVs.",
+    "tech": ["Python", "AI", "BeautifulSoup", "docx"]
+  },
+  "relationshipos": {
+    "featuredRank": 2,
+    "title": "RelationshipOS",
+    "blurb": "A personal OS for relationships — logs, reminders and life events in one Expo app.",
+    "tech": ["React Native", "TypeScript", "Expo", "SQLite"]
+  },
+  "neurobiz": {
+    "featuredRank": 3,
+    "title": "NeuroBiz",
+    "blurb": "AI business platform — analytics, automation and insights for enterprise workflows.",
+    "demoUrl": "",
+    "tech": ["Next.js", "TypeScript", "Tailwind", "Node.js"]
+  },
+  "portfolio": { "hide": true },
+  "sysfoo": { "hide": true },
+  "devops-project-zomato": { "hide": true },
+  "mern_aws_deploy": { "hide": true },
+  "tourhouse-website": {
+    "demoUrl": "https://tour-house-website.vercel.app/",
+    "tech": ["Next.js", "Tailwind", "React"]
+  },
+  "sanz-cafe": {
+    "demoUrl": "https://sanzcafe.netlify.app/",
+    "blurb": "Paid client work — responsive café site with custom menus. Shipped for a real business."
+  }
+}

@@ -1,40 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# portfolio_muse — Editorial Engineer rebuild
 
-## Getting Started
+Fresh Next.js app (see `REDESIGN_PLAN.md` for the full plan + research).
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd portfolio_muse
+npm install
+cp .env.example .env.local   # optional: GITHUB_TOKEN, WEB3FORMS_KEY
+npm run dev                  # → http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy your assets from the old portfolio before running:
+`public/profile.jpg`, `public/certificates/*`, `public/resume.pdf`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What's inside
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/` — split hero (masked reveal, IST clock, copy-email), tool marquee,
+  paper About + timeline, top-3 projects, ranked top-3 certs, GitHub strip, contact form
+- `/projects` — full GitHub-live index (hourly ISR), search + language filter + sort
+- `/certificates` — all certs in `rank` order (rank 1 = most valuable)
+- `/api/github` — free cached GitHub proxy · `/api/contact` — free form pipeline
+- `data/curated-projects.json` — CRUD layer: `featuredRank`, `hide`, `blurb`, `demoUrl`
+- `npm run sync:projects` / `npm run sync:certs` — free automation scripts
 
-## Learn More
+## Profile photo guide
 
-To learn more about Next.js, take a look at the following resources:
+- Best: transparent-background PNG (export from your editor, or one-click remove at
+  remove.bg / Adobe Express / Photoshop Subject Select → mask).
+- Also fine: any dark-background JPG — the hero's edge mask dissolves it into the page.
+- White-background JPG? Don't ship it raw (grey box). Remove the bg first, then upload
+  via `/admin-muse` (accepts PNG/JPG/JPEG, preserves the real extension).
+- Crop tip: face in the upper third — the hero uses `object-[50%_22%]`; tweak that value
+  per photo in `src/components/Hero.tsx`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Free-service setup (5 min)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-//this is my personnel portfolio
-
-certificates.tsx works as a sequence , the order is replicated as per the seq there
+1. **Projects:** nothing needed. Optional `GITHUB_TOKEN` (fine-grained PAT, zero scopes)
+   raises rate limit 60 → 5000/hr.
+2. **Contact → email:** free key from https://web3forms.com → `WEB3FORMS_KEY`.
+3. **Contact → spreadsheet:** Apps Script (Extensions → Apps Script) deployed as web app:
+   ```js
+   function doPost(e){SpreadsheetApp.getActiveSheet().appendRow([new Date(),e.parameter.name,e.parameter.email,e.parameter.message]);return ContentService.createTextOutput("ok");}
+   ```
+   Paste the web-app URL as `SHEET_WEBHOOK_URL`. Without either, messages still land in `data/messages.json`.

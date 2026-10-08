@@ -1,58 +1,49 @@
-'use client';
-
-import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiMapPin } from 'react-icons/fi';
-
-const socials = [
-  { name: 'GitHub', url: 'https://github.com/Kaushal2910', icon: FiGithub },
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/kaushal0510', icon: FiLinkedin },
-  { name: 'Instagram', url: 'https://www.instagram.com/kaushal_0510_', icon: FiInstagram },
-  { name: 'Email', url: 'mailto:sonawanekaushal05@gmail.com', icon: FiMail },
-];
+import { FiGithub, FiLinkedin, FiInstagram, FiArrowUp } from "react-icons/fi";
 
 export default function Footer() {
+  const built = new Date().toISOString().slice(0, 10);
   return (
-    <footer id="contact" className="bg-black border-t border-white/5 scroll-mt-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Contact Section */}
-        <div className="py-20 text-center">
-          <p className="text-sm font-medium tracking-[0.2em] uppercase text-white/60 mb-4">Contact</p>
-          <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">Get in touch</h2>
-          <p className="mt-4 text-slate-400 max-w-xl mx-auto leading-relaxed">
-            I&apos;m currently open to new opportunities and interesting projects.
-            Feel free to reach out — I usually reply within a day.
+    <footer className="border-t border-[rgba(237,234,226,0.12)] bg-[#0a0a09]">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-[1.2fr_1fr_1fr]">
+        <div>
+          <p className="font-mono text-sm text-[#edeae2]">kaushal<span className="text-[#ff4d00]">.</span>dev</p>
+          <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#edeae2]/50">
+            Software engineer from Pune. Full-stack + mobile apps, on cloud infra that stays up.
           </p>
-
-          <a
-            href="mailto:sonawanekaushal05@gmail.com"
-            className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/[0.06] border border-white/[0.12] text-white/80 text-sm font-medium hover:bg-white/[0.1] hover:border-white/[0.2] transition-all duration-300"
-          >
-            <FiMail size={16} />
-            sonawanekaushal05@gmail.com
-          </a>
-
-          <div className="mt-10 flex items-center justify-center gap-3">
-            {socials.map((s) => (
-              <a
-                key={s.name}
-                href={s.url}
-                target={s.url.startsWith('mailto') ? undefined : '_blank'}
-                rel={s.url.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                aria-label={s.name}
-                title={s.name}
-                className="p-3 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-300"
-              >
-                <s.icon size={18} />
+          <div className="mt-4 flex gap-2">
+            {[
+              { icon: FiGithub, href: "https://github.com/Kaushal2910", l: "GitHub" },
+              { icon: FiLinkedin, href: "https://www.linkedin.com/in/kaushal0510", l: "LinkedIn" },
+              { icon: FiInstagram, href: "https://www.instagram.com/kaushal_0510_/", l: "Instagram" },
+            ].map((s) => (
+              <a key={s.l} href={s.href} aria-label={s.l} className="rounded-md border border-[rgba(237,234,226,0.12)] p-2.5 text-[#edeae2]/60 hover:border-[#ff4d00] hover:text-white">
+                <s.icon size={16} />
               </a>
             ))}
           </div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="py-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500">
-          <p>&copy; {new Date().getFullYear()} Kaushal Sonawane</p>
-          <p className="inline-flex items-center gap-1.5">
-            <FiMapPin size={14} /> Pune, India
+        <nav>
+          <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#edeae2]/40">Sitemap</p>
+          <ul className="mt-3 space-y-2 text-sm text-[#edeae2]/65">
+            <li><a href="/#about" className="u-link">About</a></li>
+            <li><a href="/projects" className="u-link">All projects</a></li>
+            <li><a href="/certificates" className="u-link">All certificates</a></li>
+            <li><a href="/#contact" className="u-link">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#edeae2]/40">Colophon</p>
+          <p className="mt-3 text-sm leading-relaxed text-[#edeae2]/50">
+            Set in Space Grotesk & Instrument Serif.<br />
+            Built with Next.js · GitHub ISR · $0 infra.<br />
+            Last built {built} · © Kaushal Sonawane
           </p>
+          <a href="/" className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-[#edeae2]/50 hover:text-[#ff4d00]">
+            ← Back home
+          </a>
+          <a href="#top" id="main-anchor" className="mt-2 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-[#edeae2]/50 hover:text-[#ff4d00]">
+            <FiArrowUp size={13} /> Back to top
+          </a>
         </div>
       </div>
     </footer>
