@@ -16,9 +16,9 @@ export function ProjectRow({ p, i }: { p: ProjectView; i: number }) {
       <span className="font-display text-3xl font-bold text-[#edeae2]/15 transition-colors group-hover:text-[#ff4d00]">
         {String(i + 1).padStart(2, "0")}
       </span>
-      <div>
+      <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-display text-xl font-bold text-[#edeae2]">{p.displayTitle}</h3>
+          <h3 className="font-display text-lg font-bold text-[#edeae2] md:text-xl">{p.displayTitle}</h3>
           {p.featuredRank && (
             <span className="rounded-full bg-[#ff4d00]/15 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-[#ff4d00]">
               Featured #{p.featuredRank}
@@ -53,7 +53,7 @@ export default function FeaturedProjects({ projects }: { projects: ProjectView[]
   const top = projects.filter((p) => p.featuredRank).sort((a, b) => (a.featuredRank ?? 9) - (b.featuredRank ?? 9)).slice(0, 3);
   const list = (top.length ? top : projects.slice(0, 3)).map((p, i) => ({ p, i }));
   return (
-    <section id="work" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-20 md:py-28">
+    <section id="work" className="mx-auto max-w-6xl scroll-mt-28 px-4 py-14 md:scroll-mt-20 md:py-28">
       <SectionHead kicker="02 · Selected work" title="Three worth" accent="your click." meta={`${projects.length} total → /projects`} />
       <div className="space-y-4">
         {list.map(({ p, i }) => (

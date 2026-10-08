@@ -26,7 +26,7 @@ export default function ContactBlock() {
     "w-full rounded-md border border-[rgba(237,234,226,0.15)] bg-white/[0.03] px-4 py-3 text-sm text-[#edeae2] placeholder:text-[#edeae2]/30 outline-none focus:border-[#ff4d00]";
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-20 md:py-28">
+    <section id="contact" className="mx-auto max-w-6xl scroll-mt-28 px-4 py-14 md:scroll-mt-20 md:py-28">
       <SectionHead kicker="04 · Contact" title="Say hello," accent="I reply." meta="~24h response" />
       <div className="grid gap-6 md:grid-cols-[0.9fr_1.1fr]">
         <div className="rounded-2xl border border-[rgba(237,234,226,0.12)] bg-white/[0.02] p-6 md:p-8">
@@ -35,7 +35,7 @@ export default function ContactBlock() {
             My inbox is open either way.
           </p>
           <ul className="mt-6 space-y-3 font-mono text-sm text-[#edeae2]/60">
-            <li>✉︎ <a className="u-link" href="mailto:sonawanekaushal05@gmail.com">sonawanekaushal05@gmail.com</a></li>
+            <li>✉︎ <a className="u-link break-all" href="mailto:sonawanekaushal05@gmail.com">sonawanekaushal05@gmail.com</a></li>
             <li>↗ <a className="u-link" href="https://www.linkedin.com/in/kaushal0510">linkedin.com/in/kaushal0510</a></li>
             <li>◷ Pune IST — usually replies within a day</li>
           </ul>

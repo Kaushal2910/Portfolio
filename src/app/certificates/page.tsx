@@ -15,7 +15,7 @@ export default function CertificatesPage() {
       <p className="mt-6 font-mono text-xs uppercase tracking-[0.25em] text-[#edeae2]/40">
         Credentials · {sorted.length} in rank order
       </p>
-      <h1 className="font-display mt-2 text-4xl font-bold tracking-tight md:text-6xl">
+      <h1 className="font-display mt-2 text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl">
         Proof, <span className="font-serif-accent font-normal">ranked.</span>
       </h1>
       <p className="mt-4 max-w-2xl leading-relaxed text-[#edeae2]/60">

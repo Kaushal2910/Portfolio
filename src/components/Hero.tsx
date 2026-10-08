@@ -86,7 +86,7 @@ export default function Hero() {
       {/* 55/45 split, vertically centered — no 100vh forcing */}
       <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 md:grid-cols-[55fr_45fr] md:gap-10">
         {/* left: type */}
-        <div>
+        <div className="min-w-0">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -95,7 +95,7 @@ export default function Hero() {
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
             Open to SDE / Full-stack roles · {clock} IST
           </motion.p>
-          <h1 className="font-display text-[clamp(2.8rem,6.5vw,4.75rem)] font-bold leading-[0.95] tracking-tight text-[#edeae2]">
+          <h1 className="font-display text-[clamp(2.5rem,11vw,4.75rem)] font-bold leading-[0.95] tracking-tight text-[#edeae2] sm:text-6xl md:text-7xl">
             {["Kaushal", "Sonawane"].map((w, i) => (
               <span key={w} className="block overflow-hidden">
                 <motion.span custom={i} variants={line} initial="hidden" animate="show" className="block">
@@ -129,17 +129,17 @@ export default function Hero() {
               </span>
             </span>
           </motion.div>
-          <div className="mt-6 flex flex-wrap items-center gap-3">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href="/#work"
-              className="group inline-flex items-center gap-2 rounded-md bg-[#edeae2] px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest text-[#16130e] transition-transform hover:-translate-y-0.5"
+              className="group inline-flex items-center justify-center gap-2 rounded-md bg-[#edeae2] px-5 py-3.5 font-mono text-xs font-bold uppercase tracking-widest text-[#16130e] transition-transform hover:-translate-y-0.5 sm:w-auto"
             >
               Selected work
               <FiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <button
               onClick={copy}
-              className="inline-flex items-center gap-2 rounded-md border border-[rgba(237,234,226,0.2)] px-5 py-3 font-mono text-xs uppercase tracking-widest text-[#edeae2]/80 hover:border-[#ff4d00] hover:text-[#edeae2]"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-[rgba(237,234,226,0.2)] px-5 py-3.5 font-mono text-xs uppercase tracking-widest text-[#edeae2]/80 hover:border-[#ff4d00] hover:text-[#edeae2] sm:w-auto"
             >
               {copied ? <FiCheck size={14} /> : <FiCopy size={14} />}
               {copied ? "Copied!" : "Copy email"}
@@ -155,7 +155,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mx-auto w-full max-w-[420px]"
+          className="mx-auto w-full min-w-0 max-w-[420px]"
         >
           <Portrait />
           <div className="mt-3 rounded-lg border border-[rgba(237,234,226,0.15)] bg-[#141412]/90 p-3 font-mono text-[11px] leading-relaxed text-[#edeae2]/70 shadow-2xl">

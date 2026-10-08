@@ -37,9 +37,9 @@ function FeatureCard({ c }: { c: Certificate }) {
           <RankBadge rank={c.rank} gold />
         </span>
       </div>
-      <div className="flex flex-col justify-center border-t border-dashed border-[rgba(237,234,226,0.2)] p-6 md:border-l md:border-t-0">
+      <div className="flex min-w-0 flex-col justify-center border-t border-dashed border-[rgba(237,234,226,0.2)] p-5 md:border-l md:border-t-0 md:p-6">
         <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#edeae2]/40">{c.issuer}{c.year ? ` · ${c.year}` : ""}</p>
-        <h3 className="font-display mt-2 text-2xl font-bold leading-snug text-[#edeae2]">{c.title}</h3>
+        <h3 className="font-display mt-2 text-xl font-bold leading-snug text-[#edeae2] md:text-2xl">{c.title}</h3>
         <p className="mt-2 font-mono text-[11px] uppercase tracking-widest text-[#c9a227]">{c.category} · most valuable</p>
         <a href={c.downloadUrl} target="_blank" rel="noreferrer" className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-md bg-[#edeae2] px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-[#16130e] hover:bg-white">
           <FiDownload size={13} /> Verify / PDF
@@ -78,8 +78,8 @@ function Ticket({ c }: { c: Certificate }) {
 export default function FeaturedCerts({ certs }: { certs: Certificate[] }) {
   const top3 = [...certs].sort((a, b) => a.rank - b.rank).slice(0, 3);
   return (
-    <section id="certs" className="border-y border-[rgba(237,234,226,0.12)] bg-[#111110]">
-      <div className="mx-auto max-w-6xl px-4 py-20 md:py-28">
+    <section id="certs" className="scroll-mt-28 border-y border-[rgba(237,234,226,0.12)] bg-[#111110] md:scroll-mt-20">
+      <div className="mx-auto max-w-6xl px-4 py-14 md:py-28">
         <SectionHead kicker="03 · Credentials" title="Most valuable" accent="first." meta={`${certs.length} certs → /certificates`} />
         {/* rank 1: full-width feature (image left, details right).
             rank 2–3: equal cards below. All landscape, none cropped. */}

@@ -11,7 +11,7 @@ const roles = [
 
 export default function Experience() {
   return (
-    <section id="about" className="bg-[#edeae2] py-20 text-[#16130e] md:py-28">
+    <section id="about" className="scroll-mt-28 bg-[#edeae2] py-14 text-[#16130e] md:scroll-mt-20 md:py-28">
       <div className="mx-auto max-w-6xl px-4">
         <SectionHead light kicker="01 · Profile" title="Engineer who" accent="ships." meta="Pune, India" />
         <div className="ruled grid gap-10 rounded-2xl border border-[#16130e]/10 bg-[#edeae2] p-6 md:grid-cols-[0.9fr_1.1fr] md:p-10">
