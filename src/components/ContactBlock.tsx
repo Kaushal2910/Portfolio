@@ -65,8 +65,7 @@ export default function ContactBlock() {
             {state === "busy" ? "Sending…" : state === "ok" ? "Sent — talk soon ✓" : "Send message"}
           </button>
           {state === "err" && <p className="mt-3 text-sm text-red-400">Send failed — email me directly instead.</p>}
-          {state === "ok" && <p className="mt-3 text-sm text-emerald-400">Saved + emailed. I&apos;ll get back within a day.</p>}
-          <p className="mt-3 font-mono text-[11px] text-[#edeae2]/35">Free stack: Web3Forms → inbox, Sheet → log, file → backup.</p>
+          {state === "ok" && <p className="mt-3 text-sm text-emerald-400">Sent — I&apos;ll get back within a day.</p>}
         </form>
       </div>
     </section>

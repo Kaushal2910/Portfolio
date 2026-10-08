@@ -1,7 +1,6 @@
 import { FiGithub, FiLinkedin, FiInstagram, FiArrowUp } from "react-icons/fi";
 
 export default function Footer() {
-  const built = new Date().toISOString().slice(0, 10);
   return (
     <footer className="border-t border-[rgba(237,234,226,0.12)] bg-[#0a0a09]">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-[1.2fr_1fr_1fr]">
@@ -32,11 +31,9 @@ export default function Footer() {
           </ul>
         </nav>
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#edeae2]/40">Colophon</p>
           <p className="mt-3 text-sm leading-relaxed text-[#edeae2]/50">
-            Set in Space Grotesk & Instrument Serif.<br />
-            Built with Next.js · GitHub ISR · $0 infra.<br />
-            Last built {built} · © Kaushal Sonawane
+            © {new Date().getFullYear()} Kaushal Sonawane<br />
+            Built with Next.js · Deployed on Netlify
           </p>
           <a href="/" className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-[#edeae2]/50 hover:text-[#ff4d00]">
             ← Back home

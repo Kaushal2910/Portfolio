@@ -16,9 +16,8 @@ export default async function ProjectsPage() {
         Every project, <span className="font-serif-accent font-normal">explained.</span>
       </h1>
       <p className="mt-4 max-w-2xl leading-relaxed text-[#edeae2]/60">
-        Pulled live from GitHub every hour — stars, languages and push dates are always
-        current. Homepage order and blurbs come from a tiny curated file, so new repos
-        show up here automatically with zero manual work.
+        Pulled live from GitHub — languages and push dates are always current.
+        Open any project to see what it does and how it&apos;s built.
       </p>
       <div className="mt-10">
         <ProjectsIndex projects={projects} />

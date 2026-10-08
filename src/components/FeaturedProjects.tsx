@@ -1,6 +1,6 @@
 'use client';
 import { motion } from "framer-motion";
-import { FiGithub, FiExternalLink, FiStar } from "react-icons/fi";
+import { FiGithub, FiExternalLink } from "react-icons/fi";
 import type { ProjectView } from "@/types";
 import SectionHead from "./SectionHead";
 
@@ -24,8 +24,8 @@ export function ProjectRow({ p, i }: { p: ProjectView; i: number }) {
               Featured #{p.featuredRank}
             </span>
           )}
-          <span className="inline-flex items-center gap-1 font-mono text-[11px] text-[#edeae2]/40">
-            <FiStar size={11} /> {p.stargazers_count} · pushed {new Date(p.pushed_at).toLocaleDateString("en-IN", { month: "short", year: "numeric" })}
+          <span className="font-mono text-[11px] text-[#edeae2]/40">
+            Updated {new Date(p.pushed_at).toLocaleDateString("en-IN", { month: "short", year: "numeric" })}
           </span>
         </div>
         <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-[#edeae2]/60">{p.displayBlurb}</p>

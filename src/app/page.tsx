@@ -12,7 +12,6 @@ export const revalidate = 3600;
 
 export default async function Home() {
   const projects = await getProjects();
-  const stars = projects.reduce((s, p) => s + p.stargazers_count, 0);
   return (
     <main id="main" className="min-h-screen bg-[#0d0d0c] text-[#edeae2]">
       <Hero />
@@ -20,7 +19,7 @@ export default async function Home() {
       <Experience />
       <FeaturedProjects projects={projects} />
       <FeaturedCerts certs={certificates} />
-      <GithubStrip count={projects.length} stars={stars} />
+      <GithubStrip count={projects.length} />
       <ContactBlock />
     </main>
   );

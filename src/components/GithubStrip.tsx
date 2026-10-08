@@ -1,6 +1,6 @@
-import { FiGithub, FiStar, FiGitBranch } from "react-icons/fi";
+import { FiGithub } from "react-icons/fi";
 
-export default function GithubStrip({ count, stars }: { count: number; stars: number }) {
+export default function GithubStrip({ count }: { count: number }) {
   return (
     <section className="border-y border-[rgba(237,234,226,0.12)] bg-[#111110]">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-8">
@@ -9,8 +9,6 @@ export default function GithubStrip({ count, stars }: { count: number; stars: nu
         </p>
         <div className="flex items-center gap-5 font-mono text-sm text-[#edeae2]/70">
           <span className="inline-flex items-center gap-1.5"><FiGithub size={15} /> {count} repos</span>
-          <span className="inline-flex items-center gap-1.5"><FiStar size={14} /> {stars} stars</span>
-          <span className="hidden items-center gap-1.5 sm:inline-flex"><FiGitBranch size={14} /> forks excluded</span>
           <a href="/projects" className="rounded-md border border-[rgba(237,234,226,0.15)] px-3 py-1.5 text-xs uppercase tracking-widest hover:border-[#ff4d00] hover:text-white">
             Open index
           </a>

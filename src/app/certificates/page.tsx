@@ -13,16 +13,14 @@ export default function CertificatesPage() {
         ← Back home
       </a>
       <p className="mt-6 font-mono text-xs uppercase tracking-[0.25em] text-[#edeae2]/40">
-        Credentials · {sorted.length} in rank order
+        Credentials · {sorted.length} verified
       </p>
       <h1 className="font-display mt-2 text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl">
         Proof, <span className="font-serif-accent font-normal">ranked.</span>
       </h1>
       <p className="mt-4 max-w-2xl leading-relaxed text-[#edeae2]/60">
-        Rank 1 is the most valuable. To re-prioritize, change one number — the homepage
-        top-3 and this page both follow <span className="font-mono text-sm">rank</span>.
-        New certs: drop JPG+PDF in <span className="font-mono text-sm">public/certificates</span>, run{" "}
-        <span className="font-mono text-sm">npm run sync:certs</span>.
+        Ranked by relevance — most valuable first. Every credential links to its
+        certificate for verification.
       </p>
       <div className="mt-6 flex flex-wrap gap-2">
         {cats.map((c) => (

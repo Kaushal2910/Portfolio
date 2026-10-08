@@ -49,10 +49,6 @@ function Portrait() {
           </div>
         )}
       </div>
-      {/* stamp sits over the lower third (torso), clear of the face */}
-      <div className="absolute bottom-3 left-3 -rotate-3 rounded-sm bg-[#ff4d00] px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-white shadow-lg">
-        Thynk · DevOps
-      </div>
     </div>
   );
 }
@@ -162,7 +158,7 @@ export default function Hero() {
             <p className="text-[#edeae2]/40">$ whoami</p>
             <p>kaushal — ships apps + infra <span className="text-emerald-400">✓</span></p>
             <p className="text-[#edeae2]/40">$ uptime</p>
-            <p>4 roles · 23 certs · 11 projects</p>
+            <p>4 roles · 26 certs · 11 projects</p>
           </div>
           <p className="font-hand mt-3 -rotate-1 text-right text-xl text-[#edeae2]/50">
             yes, I actually answer emails ↓
