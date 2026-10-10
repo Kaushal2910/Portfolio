@@ -174,8 +174,11 @@ function CertManager() {
 export default function AdminMusePage() {
   const [profile, setProfile] = useState("/profile.jpg");
   const [msgs, setMsgs] = useState<Msg[]>([]);
+  const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
+    const h = window.location.hostname;
+    setIsLive(h !== "localhost" && h !== "127.0.0.1");
     fetch("/api/contact")
       .then((r) => r.json())
       .then((d) => Array.isArray(d) && setMsgs(d))
@@ -190,6 +193,13 @@ export default function AdminMusePage() {
       <h1 className="font-display mt-6 text-3xl font-bold tracking-tight md:text-4xl">
         Site <span className="font-serif-accent font-normal">assets.</span>
       </h1>
+      {isLive && (
+        <p className="mt-4 rounded-lg border border-amber-400/40 bg-amber-400/10 p-3 text-sm leading-relaxed text-amber-200">
+          You&apos;re on the live site — edits made here won&apos;t stick (server files are
+          temporary). Make changes on <span className="font-mono text-xs">localhost:3000/admin-muse</span> instead,
+          then commit + push to publish.
+        </p>
+      )}
       <p className="mt-2 text-sm leading-relaxed text-[#edeae2]/60">
         Profile photo accepts PNG, JPG and JPEG — the hero tries{" "}
         <span className="font-mono text-xs">/profile.png → .jpg → .jpeg</span> automatically,
