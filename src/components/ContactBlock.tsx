@@ -11,6 +11,9 @@ export default function ContactBlock() {
     if (form.botcheck) return; // Stop bots if honeypot is filled
     setState("busy");
 
+    const contactInput = form.email.trim();
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactInput);
+
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -21,10 +24,11 @@ export default function ContactBlock() {
         body: JSON.stringify({
           access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
           subject: `New portfolio message from ${form.name}`,
-          from_name: "kaushalsonawane",
-          replyto: form.email,
+          from_name: "Kaushal Portfolio",
           name: form.name,
-          email: form.email,
+          ...(isEmail
+            ? { email: contactInput, replyto: contactInput }
+            : { phone: contactInput }),
           message: form.message,
         }),
       });
