@@ -21,7 +21,8 @@ export default function ContactBlock() {
         body: JSON.stringify({
           access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
           subject: `New portfolio message from ${form.name}`,
-          from_name: "kaushalsonawane.dev",
+          from_name: "kaushalsonawane",
+          replyto: form.email,
           name: form.name,
           email: form.email,
           message: form.message,
