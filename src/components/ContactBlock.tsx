@@ -3,21 +3,42 @@ import { useState } from "react";
 import SectionHead from "./SectionHead";
 
 export default function ContactBlock() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "", botcheck: "" });
   const [state, setState] = useState<"idle" | "busy" | "ok" | "err">("idle");
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (form.botcheck) return; // Stop bots if honeypot is filled
     setState("busy");
+
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          subject: `New portfolio message from ${form.name}`,
+          from_name: "kaushalsonawane.dev",
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
       });
-      setState(res.ok ? "ok" : "err");
-      if (res.ok) setForm({ name: "", email: "", message: "" });
-    } catch {
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setState("ok");
+        setForm({ name: "", email: "", message: "", botcheck: "" });
+      } else {
+        console.error("Web3Forms Error:", data);
+        setState("err");
+      }
+    } catch (err) {
+      console.error("Submission Error:", err);
       setState("err");
     }
   };
@@ -43,7 +64,15 @@ export default function ContactBlock() {
         </div>
         <form onSubmit={submit} className="rounded-2xl border border-[rgba(237,234,226,0.12)] bg-white/[0.02] p-6 md:p-8">
           {/* honeypot */}
-          <input type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
+          <input
+            type="text"
+            name="botcheck"
+            value={form.botcheck}
+            onChange={(e) => setForm({ ...form, botcheck: e.target.value })}
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+          />
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block">
               <span className="mb-1.5 block font-mono text-[11px] uppercase tracking-widest text-[#edeae2]/50">Your name</span>

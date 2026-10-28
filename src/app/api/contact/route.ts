@@ -48,7 +48,7 @@ export async function POST(req: Request) {
     // 1. email via Web3Forms (free)
     if (process.env.WEB3FORMS_KEY) {
       try {
-        await fetch("https://api.web3forms.com/submit", {
+        const res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -59,7 +59,16 @@ export async function POST(req: Request) {
             message: `${message}\n\n— ${name} (${email})`,
           }),
         });
-      } catch { /* fall through to file backup */ }
+        const data = await res.json().catch(() => null);
+        if (!res.ok || !data?.success) {
+          console.error("Web3Forms error:", res.status, data);
+        }
+      } catch (e) { 
+        console.error("Web3Forms exception:", e);
+        /* fall through to file backup */ 
+      }
+    } else {
+      console.error("WEB3FORMS_KEY not set");
     }
 
     // 2. Google Sheet log (free Apps Script webhook)
